@@ -34,7 +34,6 @@ public class PessoaDto implements Dto {
 
     @Override
     public Pessoa toDomain() {
-        
         return new Pessoa(nome, dataNascimento, genero, parentesco);
     }
 }
