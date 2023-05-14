@@ -6,11 +6,16 @@ import lombok.Data;
 
 import java.time.LocalDate;
 @Data
-public class Pessoa {
+public class Pessoa implements BaseDomain{
 
     private String nome;
     private LocalDate dataNascimento;
     private Genero genero;
     private Parentesco parentesco;
 
+    @Override
+    public BaseDto toDto() {
+        // FIXME Realizar o retorno do DTO após a criação do objeto
+        return null;
+    }
 }
