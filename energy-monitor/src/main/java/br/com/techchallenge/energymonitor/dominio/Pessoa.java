@@ -2,12 +2,10 @@ package br.com.techchallenge.energymonitor.dominio;
 
 import br.com.techchallenge.energymonitor.dominio.enums.Genero;
 import br.com.techchallenge.energymonitor.dominio.enums.Parentesco;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDate;
-@Getter
-@Setter
+@Data
 public class Pessoa {
 
     private String nome;

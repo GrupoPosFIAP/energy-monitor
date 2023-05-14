@@ -4,6 +4,7 @@ public enum Parentesco {
     PAI,
     MAE,
     IRMAO,
-    IRMA
+    IRMA,
+    OUTRO
 
 }
