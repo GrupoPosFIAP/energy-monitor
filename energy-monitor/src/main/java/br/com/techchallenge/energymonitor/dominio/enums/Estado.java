@@ -1,6 +1,6 @@
 package br.com.techchallenge.energymonitor.dominio.enums;
 
-public enum UnidadeFederacaoSigla {
+public enum Estado {
         AC ("Acre") ,
         AL ("Alagoas"), 
         AP ("Amapá"), 
@@ -27,5 +27,11 @@ public enum UnidadeFederacaoSigla {
         SC ("Santa Catarina"), 
         SP ("São Paulo"), 
         SE ("Sergipe"), 
-        TO ("Tocantis"),               
+        TO ("Tocantis");
+
+        private String estado;
+
+        private Estado(String estado) {
+                this.estado = estado;
+        }
 }

@@ -10,6 +10,32 @@
       <change beforePath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/controller/PessoaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/controller/PessoaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/Endereco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/UnidadeFederacaoSigla.java" beforeDir="false" afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/UnidadeFederacaoSigla.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/energy-monitor.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/EnergyMonitorApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/controller/PessoaController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/dominio/Domain.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/dominio/Endereco.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/dominio/Pessoa.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/Estado.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/Genero.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/Parentesco.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/dto/Dto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/dto/PessoaDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/java/br/com/techchallenge/energymonitor/service/DataService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/bin/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/controller/EnderecoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dto/EnderecoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/Endereco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/UnidadeFederacaoSigla.java" beforeDir="false" afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/Estado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +84,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/Public/Raquel/energy-monitor-1",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kesar/Documents/Cesar/FIAP/workspace/energy-monitor&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
 }]]></component>
   <component name="RunManager">
@@ -65,12 +97,35 @@
       <option name="ALTERNATIVE_JRE_PATH" value="C:\Program Files\Java\zulu17.42.19-ca-jdk17.0.7-win_x64" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.techchallenge.energymonitor.EnergyMonitorApplication" />
+    <configuration name="EnergyMonitorApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../../../Program Files/Java/jdk-17.0.5" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <envs>
+        <env name="M2_HOME" value="C:\Program Files\apache-maven-3.9.2\bin" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="src.main.java.br.com.techchallenge.energymonitor.EnergyMonitorApplication.java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.main.java.br.com.techchallenge.energymonitor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
       <module name="energy-monitor" />
       <option name="PROGRAM_PARAMETERS" value="$MAVEN_REPOSITORY$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EnergyMonitorApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
