@@ -5,15 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e7b9bc5-213d-498c-955a-7f66cbe7ebd6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/Endereco.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/UnidadeFederacaoSigla.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/controller/HelloWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/controller/PessoaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/controller/PessoaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/Endereco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/UnidadeFederacaoSigla.java" beforeDir="false" afterPath="$PROJECT_DIR$/energy-monitor/src/main/java/br/com/techchallenge/energymonitor/dominio/enums/UnidadeFederacaoSigla.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -21,6 +36,13 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2PlICnfakQ8KTD2utKGh7MSXq6m" />
   <component name="ProjectLevelVcsManager">
@@ -30,23 +52,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kesar/Documents/Cesar/FIAP/workspace/energy-monitor&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Public/Raquel/energy-monitor-1",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="C:\Program Files\Java\zulu17.42.19-ca-jdk17.0.7-win_x64" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="br.com.techchallenge.energymonitor.EnergyMonitorApplication" />
       <module name="energy-monitor" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="energy-monitor" />
-      <option name="filePath" />
+      <option name="PROGRAM_PARAMETERS" value="$MAVEN_REPOSITORY$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -62,5 +82,9 @@
       <updated>1684025119224</updated>
     </task>
     <servers />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
