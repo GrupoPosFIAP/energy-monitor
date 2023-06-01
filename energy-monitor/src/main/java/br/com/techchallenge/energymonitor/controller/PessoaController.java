@@ -2,6 +2,8 @@ package br.com.techchallenge.energymonitor.controller;
 
 import br.com.techchallenge.energymonitor.dto.PessoaDto;
 import br.com.techchallenge.energymonitor.service.DataService;
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +18,7 @@ public class PessoaController {
     private DataService dataService;
     
     @PostMapping
-    public void saveData(@RequestBody PessoaDto pessoa) {
+    public void saveData(@Valid @RequestBody PessoaDto pessoa) {
         dataService.saveData(pessoa);
     }
 }
