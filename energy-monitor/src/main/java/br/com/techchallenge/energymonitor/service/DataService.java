@@ -1,5 +1,8 @@
 package br.com.techchallenge.energymonitor.service;
 
+
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import org.springframework.stereotype.Service;
 
 import br.com.techchallenge.energymonitor.dto.Dto;
@@ -12,5 +15,6 @@ public class DataService {
     public <T extends Dto> void saveData(T request) {
         log.info("Dados recebidos: {}", request);
         log.info("Transformando para classe de domínio {}", request.toDomain());
+       
     }
 }
