@@ -12,5 +12,6 @@ public class DataService {
     public <T extends Dto> void saveData(T request) {
         log.info("Dados recebidos: {}", request);
         log.info("Transformando para classe de domínio {}", request.toDomain());
+       
     }
 }

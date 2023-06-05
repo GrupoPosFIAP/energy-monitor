@@ -10,7 +10,7 @@ import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import br.com.techchallenge.energymonitor.service.DataService;
 
 @RestController
-@RequestMapping("/endereco")
+@RequestMapping("/enderecos")
 public class EnderecoController {
 
     @Autowired
@@ -18,6 +18,9 @@ public class EnderecoController {
     
     @PostMapping
     public void saveData(@RequestBody EnderecoDto endereco) {
-        dataService.saveData(endereco);
+        
+    	dataService.saveData(endereco);
+    	
     }
 }
+	

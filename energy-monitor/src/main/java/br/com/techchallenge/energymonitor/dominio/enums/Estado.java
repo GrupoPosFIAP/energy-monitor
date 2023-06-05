@@ -29,7 +29,7 @@ public enum Estado {
         SE ("Sergipe"), 
         TO ("Tocantis");
 
-        private String estado;
+        private final String estado;
 
         private Estado(String estado) {
                 this.estado = estado;
