@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Data;
 
 @Data
-public class EletronicoDto {
+public class EletronicoDto implements Dto {
 
     @JsonProperty
     @NotBlank(message = "Informe o nome do eletrônico")
