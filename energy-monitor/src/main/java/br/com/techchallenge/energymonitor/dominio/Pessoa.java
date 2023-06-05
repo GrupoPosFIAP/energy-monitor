@@ -20,5 +20,4 @@ public class Pessoa implements Domain {
     public PessoaDto toDto() {
         return new PessoaDto(nome, dataNascimento, genero, parentesco);
     }
-
 }
