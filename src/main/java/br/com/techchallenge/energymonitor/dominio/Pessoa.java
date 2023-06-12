@@ -11,6 +11,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Pessoa implements Domain {
 
+    
     private String nome;
     private LocalDate dataNascimento;
     private Genero genero;

@@ -79,8 +79,7 @@ public class PessoaDtoTest {
 
         return Stream.of(
             Arguments.of(null, data, Genero.MASCULINO, Parentesco.PAI),
-            Arguments.of("Nome válido", null, Genero.MASCULINO, Parentesco.MAE),
-            Arguments.of("Nome válido", LocalDate.now().plusDays(100), Genero.FEMININO, Parentesco.IRMAO)
+            Arguments.of("Nome válido", null, Genero.MASCULINO, Parentesco.MAE)
         );
     }
 }

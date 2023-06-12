@@ -31,4 +31,15 @@ public class RestControllerErrorAdvice {
 
         return ResponseEntity.badRequest().body(errorResponse);
     }
+
+    @ExceptionHandler(Exception.class)
+    private ResponseEntity<ApiErrorResponse> handleGenericException(Exception exception) {
+        var message = exception.getMessage();
+        var timestamp = LocalDateTime.now();
+        var errorResponse = new ApiErrorResponse(message, timestamp, 
+        HttpStatus.INTERNAL_SERVER_ERROR.value(), 
+        HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+
+        return ResponseEntity.internalServerError().body(errorResponse);
+    }
 }
