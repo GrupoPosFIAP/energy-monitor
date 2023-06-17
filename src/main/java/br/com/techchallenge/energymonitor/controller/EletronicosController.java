@@ -12,7 +12,8 @@ public class EletronicosController {
     private DataService dataService;
 
     @PostMapping
-    public void saveData(@RequestBody EletronicoDto eletronico) {
-    	dataService.saveData(eletronico);
+    public String saveData(@RequestBody EletronicoDto eletronico) {
+        dataService.saveData(eletronico);
+        return  "Dados recebidos com sucesso";
     }
 }

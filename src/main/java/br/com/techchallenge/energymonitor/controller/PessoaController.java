@@ -18,8 +18,9 @@ public class PessoaController {
     private DataService dataService;
     
     @PostMapping
-    public void saveData(@Valid @RequestBody PessoaDto pessoa) {
+    public String saveData(@Valid @RequestBody PessoaDto pessoa) {
         dataService.saveData(pessoa);
+        return  "Dados recebidos com sucesso";
     }
 }
 

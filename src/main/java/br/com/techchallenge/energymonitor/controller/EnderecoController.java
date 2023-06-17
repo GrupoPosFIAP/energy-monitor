@@ -17,10 +17,9 @@ public class EnderecoController {
     private DataService dataService;
     
     @PostMapping
-    public void saveData(@RequestBody EnderecoDto endereco) {
-        
+    public String saveData(@RequestBody EnderecoDto endereco) {
     	dataService.saveData(endereco);
-    	
+        return  "Dados recebidos com sucesso";
     }
 }
 	

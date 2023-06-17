@@ -15,6 +15,7 @@ public class EnderecoDto implements Dto {
 
     @JsonProperty
     @NotBlank(message = "Informe a rua")
+
     private final String rua;
 
     @JsonProperty

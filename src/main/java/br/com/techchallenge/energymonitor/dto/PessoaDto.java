@@ -23,8 +23,9 @@ public class PessoaDto implements Dto {
     @NotNull(message = "Data de nascimento deve ser informada")
     @PastOrPresent(message = "Data de nascimento deve ser no passado")
     private final LocalDate dataNascimento;
-    
+
     private final Genero genero;
+
     private final Parentesco parentesco;
 
     @JsonCreator
