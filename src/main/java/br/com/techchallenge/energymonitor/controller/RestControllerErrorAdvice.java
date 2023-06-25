@@ -42,8 +42,8 @@ public class RestControllerErrorAdvice {
         var message = String.format("Campo %s está inválido. Tente Novamente com um valor correto.", errorField);
         var timestamp = LocalDateTime.now();
         var errorResponse = new ApiErrorResponse(message, timestamp,
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.getReasonPhrase());
 
         return ResponseEntity.badRequest().body(errorResponse);
     }
