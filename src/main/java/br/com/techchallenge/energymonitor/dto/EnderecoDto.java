@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import br.com.techchallenge.energymonitor.dominio.Endereco;
 import br.com.techchallenge.energymonitor.dominio.enums.Estado;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -31,6 +32,7 @@ public class EnderecoDto implements Dto {
     private final String cidade;
 
     @JsonProperty
+    @NotNull
     @NotBlank(message = "Informe o estado")
     private final Estado estado;
 

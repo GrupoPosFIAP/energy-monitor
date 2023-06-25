@@ -6,10 +6,13 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import br.com.techchallenge.energymonitor.exception.ApiErrorResponse;
 
@@ -32,6 +35,19 @@ public class RestControllerErrorAdvice {
         return ResponseEntity.badRequest().body(errorResponse);
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    private ResponseEntity<ApiErrorResponse> handleInvalidMessageException(HttpMessageNotReadableException exception) {
+        var jsonMappingException = (JsonMappingException) exception.getCause();
+        var errorField = jsonMappingException.getPath().get(0).getFieldName();
+        var message = String.format("Campo %s está inválido. Tente Novamente com um valor correto.", errorField);
+        var timestamp = LocalDateTime.now();
+        var errorResponse = new ApiErrorResponse(message, timestamp,
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
+
     @ExceptionHandler(Exception.class)
     private ResponseEntity<ApiErrorResponse> handleGenericException(Exception exception) {
         var message = exception.getMessage();
@@ -41,5 +57,5 @@ public class RestControllerErrorAdvice {
         HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
 
         return ResponseEntity.internalServerError().body(errorResponse);
-    }
+    }    
 }

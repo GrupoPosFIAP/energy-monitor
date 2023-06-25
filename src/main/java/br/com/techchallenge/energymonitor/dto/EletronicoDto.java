@@ -1,11 +1,11 @@
 package br.com.techchallenge.energymonitor.dto;
 
-import br.com.techchallenge.energymonitor.dominio.Eletronico;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.NotBlank;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import jakarta.validation.constraints.PastOrPresent;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import br.com.techchallenge.energymonitor.dominio.Eletronico;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data

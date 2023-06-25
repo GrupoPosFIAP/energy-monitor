@@ -1,9 +1,14 @@
 package br.com.techchallenge.energymonitor.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.techchallenge.energymonitor.dto.Dto;
 import br.com.techchallenge.energymonitor.dto.EletronicoDto;
 import br.com.techchallenge.energymonitor.service.DataService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/eletronicos")
@@ -12,8 +17,7 @@ public class EletronicosController {
     private DataService dataService;
 
     @PostMapping
-    public String saveData(@RequestBody EletronicoDto eletronico) {
-        dataService.saveData(eletronico);
-        return  "Dados recebidos com sucesso";
+    public Dto saveData(@RequestBody EletronicoDto eletronico) {
+        return dataService.saveData(eletronico);
     }
 }

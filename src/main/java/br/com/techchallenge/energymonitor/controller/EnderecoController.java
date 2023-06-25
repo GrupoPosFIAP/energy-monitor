@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.techchallenge.energymonitor.dto.Dto;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import br.com.techchallenge.energymonitor.service.DataService;
 
@@ -17,9 +18,8 @@ public class EnderecoController {
     private DataService dataService;
     
     @PostMapping
-    public String saveData(@RequestBody EnderecoDto endereco) {
-    	dataService.saveData(endereco);
-        return  "Dados recebidos com sucesso";
+    public Dto saveData(@RequestBody EnderecoDto endereco) {
+    	return dataService.saveData(endereco);
     }
 }
 	

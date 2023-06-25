@@ -1,5 +1,6 @@
 package br.com.techchallenge.energymonitor.controller;
 
+import br.com.techchallenge.energymonitor.dto.Dto;
 import br.com.techchallenge.energymonitor.dto.PessoaDto;
 import br.com.techchallenge.energymonitor.service.DataService;
 import jakarta.validation.Valid;
@@ -18,9 +19,8 @@ public class PessoaController {
     private DataService dataService;
     
     @PostMapping
-    public String saveData(@Valid @RequestBody PessoaDto pessoa) {
-        dataService.saveData(pessoa);
-        return  "Dados recebidos com sucesso";
+    public Dto saveData(@Valid @RequestBody PessoaDto pessoa) {
+        return dataService.saveData(pessoa);
     }
 }
 
