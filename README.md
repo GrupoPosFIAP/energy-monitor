@@ -6,11 +6,12 @@
 -API Energy Monitor permite o gerenciamento da energia consumida por aparelhos eletrônicos diversos, 
 monitorando em tempo real e gerando historico de consumo de energia elétrica.
 
--Disponibilizamos três endpoints: Enderecos, Pessoas e Eletronicos, nos quais aplicamos a mesma abstração,
-onde os dados serão recebidos e a seguir validados. Com essa premissa criamos uma interface Dto para ser
-implementada nas trê requisições; Essa interface possui um método toDomain() para obter a classe de domínio
-referente a cada requisição, onde poderemos aplicar as regras de negócios específicas para cada fluxo.
-Com isso, foi necessário apenas um Service para implementar todas as requisições.
+-Disponibilizamos três endpoints: Enderecos, Pessoas e Eletronicos, nos quais aplicamos a mesma 
+abstração, onde os dados serão recebidos e a seguir validados. Com essa premissa criamos uma 
+interface Dto para ser implementada nas trê requisições; Essa interface possui um método toDomain()
+para obter a classe de domínio referente a cada requisição, onde poderemos aplicar as regras de 
+negócios específicas para cada fluxo. Com isso, foi necessário apenas um Service para implementar
+todas as requisições.
 ```
 ## Tecnologias adotadas
 ```
@@ -23,7 +24,7 @@ Com isso, foi necessário apenas um Service para implementar todas as requisiç�
 ## Endpoints
 * [Pessoa](#pessoa)
 * [Endereço](#Endereço)
-* [Aparelho Eletrônico](#eletronico)
+* [Aparelho Eletrônico](#Eletrônico)
 
 
 ## Pessoa
@@ -88,7 +89,7 @@ rua | O nome da rua.
 número  |O número da casa ou estabelecimento.
 bairro |O nome do bairro.
 cidade |O nome da cidade.
-estado |A sigla do estado.
+estado |A sigla do estado ("AC", "AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE" ou TO.)
 
 * Exemplo de Resposta
 
@@ -135,3 +136,8 @@ potência |A potência do eletrônico em Watts
     "potencia": 5
 }
 ```
+
+## Dificuldades e Aprendizados
+* A não padronização dos ambientes da equipe gerou falhas no build do projeto.
+* A utilização de IDE (Integrated Developer Envoirement – Ambiente de Desenvolvimento Integrado)
+idênticas por parte dos menbros da equipe, evita problemas de incompatibilidade.
