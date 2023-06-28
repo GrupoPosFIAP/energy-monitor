@@ -3,18 +3,14 @@
 
 ## Sobre
 ```
--API Energy Monitor permite o gerenciamento da energia 
-consumida por aparelhos eletrônicos diversos, monitorando
-em tempo real e gerando historico de consumo.
+-API Energy Monitor permite o gerenciamento da energia consumida por aparelhos eletrônicos diversos, 
+monitorando em tempo real e gerando historico de consumo de energia elétrica.
 
--Disponibilizamos três endpoints :Enderecos, Pessoas e Eletronicos, 
-nos quais aplicamos a mesma abstração, onde os dados seram recebidos
-e a seguir validados. Com essa premissa criamos uma interface Dto
-para ser implementada nas trê requisições; Essa interface possui 
-um método toDomain() para obter a classe de domínio referente 
-a cada requisição onde poderemos aplicar as regras de negócios específicas
-para cada fluxo. Com isso foi necessário apenas um Service para implementar
-todas as requisições.
+-Disponibilizamos três endpoints: Enderecos, Pessoas e Eletronicos, nos quais aplicamos a mesma abstração,
+onde os dados serão recebidos e a seguir validados. Com essa premissa criamos uma interface Dto para ser
+implementada nas trê requisições; Essa interface possui um método toDomain() para obter a classe de domínio
+referente a cada requisição, onde poderemos aplicar as regras de negócios específicas para cada fluxo.
+Com isso, foi necessário apenas um Service para implementar todas as requisições.
 ```
 
 ## Tecnologias adotadas
@@ -23,13 +19,13 @@ todas as requisições.
 -SpringBoot: criação API Restfull e microsserviços
 ```
 ## Arquitetura
-<p align="center">  <img src="./arquitetura.jpg"></p>
+<p align="center">  <src/arquitetura.jpg"></p>
 
 ## Endpoints
 
 * [Pessoa](#pessoa)
 * [Endereço](#Endereço)
-* [Aparelho Eletrônico](#aparelho-eletronico-)
+* [Aparelho Eletrônico](#aparelho-eletronico)
 
 
 ## Pessoa
