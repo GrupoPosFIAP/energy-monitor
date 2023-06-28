@@ -12,20 +12,18 @@ implementada nas trê requisições; Essa interface possui um método toDomain()
 referente a cada requisição, onde poderemos aplicar as regras de negócios específicas para cada fluxo.
 Com isso, foi necessário apenas um Service para implementar todas as requisições.
 ```
-
 ## Tecnologias adotadas
 ```
 -Java 17: programação server-side
 -SpringBoot: criação API Restfull e microsserviços
 ```
 ## Arquitetura
-<p align="center">  <src/arquitetura.jpg"></p>
+<img  width="100%" height="100%"  src="src/arquitetura.jpg"  alt="Arquitetura"  title="Arquitetura"  />
 
 ## Endpoints
-
 * [Pessoa](#pessoa)
 * [Endereço](#Endereço)
-* [Aparelho Eletrônico](#aparelho-eletronico)
+* [Aparelho Eletrônico](#eletronico)
 
 
 ## Pessoa
@@ -106,7 +104,7 @@ estado |A sigla do estado.
 }
 ```
 
-## Aparelho Eletrônico
+## Eletrônico
 
 * Rota POST : http://localhost:8080/eletronicos
   
