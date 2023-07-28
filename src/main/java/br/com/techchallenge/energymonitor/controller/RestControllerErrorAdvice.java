@@ -1,25 +1,25 @@
 package br.com.techchallenge.energymonitor.controller;
 
-import static java.util.stream.Collectors.joining;
-
-import java.time.LocalDateTime;
-
+import br.com.techchallenge.energymonitor.exception.ApiErrorResponse;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
+import java.time.LocalDateTime;
 
-import br.com.techchallenge.energymonitor.exception.ApiErrorResponse;
+import static java.util.stream.Collectors.joining;
 
 @RestControllerAdvice
 public class RestControllerErrorAdvice {
     
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ApiErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         var message = exception
             .getAllErrors()
@@ -36,6 +36,7 @@ public class RestControllerErrorAdvice {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     private ResponseEntity<ApiErrorResponse> handleInvalidMessageException(HttpMessageNotReadableException exception) {
         var jsonMappingException = (JsonMappingException) exception.getCause();
         var errorField = jsonMappingException.getPath().get(0).getFieldName();
@@ -49,6 +50,7 @@ public class RestControllerErrorAdvice {
     }
 
     @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     private ResponseEntity<ApiErrorResponse> handleGenericException(Exception exception) {
         var message = exception.getMessage();
         var timestamp = LocalDateTime.now();
