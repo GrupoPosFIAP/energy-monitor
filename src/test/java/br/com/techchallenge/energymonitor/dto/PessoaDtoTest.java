@@ -68,7 +68,7 @@ public class PessoaDtoTest {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         
-        pessoaDto = new PessoaDto(nome, dataNascimento, genero, parentesco);
+        pessoaDto = new PessoaDto(0l, nome, dataNascimento, genero, parentesco);
         var validations = validator.validate(pessoaDto);
 
         assertTrue(validations.size() > 0);

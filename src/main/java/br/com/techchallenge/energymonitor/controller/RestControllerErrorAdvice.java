@@ -50,6 +50,7 @@ public class RestControllerErrorAdvice {
 
     @ExceptionHandler(Exception.class)
     private ResponseEntity<ApiErrorResponse> handleGenericException(Exception exception) {
+        exception.printStackTrace();
         var message = exception.getMessage();
         var timestamp = LocalDateTime.now();
         var errorResponse = new ApiErrorResponse(message, timestamp, 

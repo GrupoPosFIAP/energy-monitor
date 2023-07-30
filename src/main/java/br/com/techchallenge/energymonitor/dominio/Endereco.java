@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Endereco implements Domain {
+public class Endereco extends Domain {
 
     @JsonProperty
     private String rua;

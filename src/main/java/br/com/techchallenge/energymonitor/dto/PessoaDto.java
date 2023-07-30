@@ -17,6 +17,7 @@ import lombok.Data;
 @Data
 public class PessoaDto implements Dto {
 
+    private final Long id;
     @NotBlank(message = "Nome não pode ser vazio")
     private final String nome;
 
@@ -32,11 +33,13 @@ public class PessoaDto implements Dto {
 
     @JsonCreator
     public PessoaDto(
+            Long id,
             String nome,
             @JsonFormat(shape = Shape.STRING, pattern = "dd-MM-yyyy") LocalDate dataNascimento,
             @JsonFormat(shape = Shape.STRING) Genero genero,
             @JsonFormat(shape = Shape.STRING) Parentesco parentesco
     ) {
+        this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.genero = genero;
@@ -45,6 +48,6 @@ public class PessoaDto implements Dto {
 
     @Override
     public Pessoa toDomain() {
-        return new Pessoa(nome, dataNascimento, genero, parentesco);
+        return new Pessoa(id, nome, dataNascimento, genero, parentesco);
     }
 }

@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Eletronico implements Domain{
+public class Eletronico extends Domain{
 
     @JsonProperty
     private String nome;
