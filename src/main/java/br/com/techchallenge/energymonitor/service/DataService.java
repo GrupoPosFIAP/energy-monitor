@@ -18,18 +18,23 @@ public abstract class DataService<D extends Domain> {
                 .orElseThrow(EntityNotFoundException::new);
     }
 
+    @SuppressWarnings("unchecked")
     public Dto save(Dto dto) {
         D entity = (D) dto.toDomain();
         var savedEntity = repository.save(entity);
         return savedEntity.toDto();
     }
 
+    @SuppressWarnings("unchecked")
     public Dto update(Dto dto) {
         D entity = (D) dto.toDomain();
         long id = entity.getId();
 
-        repository.findById(id)
-            .orElseThrow(() -> new EnergyMonitorException("not found"));
+        var foundEntity = repository.findById(id);
+
+        if(!foundEntity.isPresent()) {
+            throw new EnergyMonitorException("not found");
+        }
 
         return repository.save(entity).toDto();
     }
