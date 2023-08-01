@@ -1,16 +1,16 @@
 package br.com.techchallenge.energymonitor.dominio;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import br.com.techchallenge.energymonitor.dominio.enums.Estado;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Endereco implements Domain {
+public class Endereco extends Domain {
 
     @JsonProperty
     private String rua;
@@ -25,6 +25,7 @@ public class Endereco implements Domain {
     private String cidade;
 
     @JsonProperty
+    @Enumerated(EnumType.STRING)
     private Estado estado;
 
     @Override
