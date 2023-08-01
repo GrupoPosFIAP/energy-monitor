@@ -7,15 +7,25 @@ import br.com.techchallenge.energymonitor.repository.BaseRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 public abstract class DataService<D extends Domain> {
 
     private final BaseRepository<D> repository;
 
-    public Dto get(long id) {
+
+    public Dto get(Long id) {
         return repository.findById(id)
                 .map(Domain::toDto)
                 .orElseThrow(EntityNotFoundException::new);
+    }
+
+    public List<Dto> getAll() {
+        return repository.findAll().stream()
+                .map(Domain::toDto)
+                .collect(Collectors.toList());
     }
 
     @SuppressWarnings("unchecked")
@@ -26,11 +36,12 @@ public abstract class DataService<D extends Domain> {
     }
 
     @SuppressWarnings("unchecked")
-    public Dto update(Dto dto) {
-        D entity = (D) dto.toDomain();
-        long id = entity.getId();
-
+    public Dto update(Long id, Dto dto) {
         var foundEntity = repository.findById(id);
+
+        D entity = (D) dto.toDomain();
+
+        entity.setId(id);
 
         if(!foundEntity.isPresent()) {
             throw new EnergyMonitorException("not found");
@@ -39,7 +50,7 @@ public abstract class DataService<D extends Domain> {
         return repository.save(entity).toDto();
     }
 
-    public void delete(long id) {
+    public void delete(Long id) {
         var savedEntity = repository.findById(id)
                 .orElseThrow(() -> new EnergyMonitorException("not found"));
 

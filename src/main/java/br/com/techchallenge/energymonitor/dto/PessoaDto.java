@@ -1,18 +1,17 @@
 package br.com.techchallenge.energymonitor.dto;
 
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
-
 import br.com.techchallenge.energymonitor.dominio.Pessoa;
 import br.com.techchallenge.energymonitor.dominio.enums.Genero;
 import br.com.techchallenge.energymonitor.dominio.enums.Parentesco;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Data
 public class PessoaDto implements Dto {
