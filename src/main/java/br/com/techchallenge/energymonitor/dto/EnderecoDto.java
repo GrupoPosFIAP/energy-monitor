@@ -9,19 +9,22 @@ import br.com.techchallenge.energymonitor.dominio.Endereco;
 import br.com.techchallenge.energymonitor.dominio.enums.Estado;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
 public class EnderecoDto implements Dto {
 
+    private final Long id;
+
     @JsonProperty
     @NotBlank(message = "Informe a rua")
-
     private final String rua;
 
     @JsonProperty
-    @NotBlank(message = "Informe o número da residência")
-    private final int numero;
+    @NotNull(message = "Informe o número da residência")
+    @Positive(message = "Número da residência deve ser positivo")
+    private final Integer numero;
 
     @JsonProperty
     @NotBlank(message = "Informe o bairro")
@@ -32,14 +35,14 @@ public class EnderecoDto implements Dto {
     private final String cidade;
 
     @JsonProperty
-    @NotNull
-    @NotBlank(message = "Informe o estado")
+    @NotNull(message = "Informe o estado")
     private final Estado estado;
 
     @JsonCreator
-    public EnderecoDto(String rua,
-            @JsonFormat(shape = Shape.STRING) int numero, String bairro, String cidade,
+    public EnderecoDto(Long id, String rua,
+            @JsonFormat(shape = Shape.STRING) Integer numero, String bairro, String cidade,
             @JsonFormat(shape = Shape.STRING) Estado estado) {
+        this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
@@ -49,6 +52,6 @@ public class EnderecoDto implements Dto {
 
     @Override
     public Endereco toDomain() {
-        return new Endereco(rua, numero, bairro, cidade, estado);
+        return new Endereco(id, rua, numero, bairro, cidade, estado);
     }
 }
