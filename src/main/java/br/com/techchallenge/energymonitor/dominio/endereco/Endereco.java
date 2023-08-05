@@ -1,5 +1,6 @@
-package br.com.techchallenge.energymonitor.dominio;
+package br.com.techchallenge.energymonitor.dominio.endereco;
 
+import br.com.techchallenge.energymonitor.dominio.Domain;
 import br.com.techchallenge.energymonitor.dominio.enums.Estado;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import com.fasterxml.jackson.annotation.JsonProperty;

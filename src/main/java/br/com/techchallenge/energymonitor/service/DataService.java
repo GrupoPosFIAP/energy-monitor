@@ -39,13 +39,13 @@ public abstract class DataService<D extends Domain> {
     public Dto update(Long id, Dto dto) {
         var foundEntity = repository.findById(id);
 
-        D entity = (D) dto.toDomain();
-
-        entity.setId(id);
-
         if(!foundEntity.isPresent()) {
             throw new EnergyMonitorException("not found");
         }
+
+        D entity = (D) dto.toDomain();
+
+        entity.setId(id);
 
         return repository.save(entity).toDto();
     }

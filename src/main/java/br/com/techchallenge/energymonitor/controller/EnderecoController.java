@@ -1,5 +1,7 @@
 package br.com.techchallenge.energymonitor.controller;
 
+import br.com.techchallenge.energymonitor.dominio.endereco.EnderecoFilter;
+import br.com.techchallenge.energymonitor.dominio.enums.Estado;
 import br.com.techchallenge.energymonitor.dto.Dto;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import br.com.techchallenge.energymonitor.service.EnderecoDataService;
@@ -52,8 +54,11 @@ public class EnderecoController {
             @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EnderecoDto.class), mediaType = "application/json") })
     })
     @GetMapping
-    public List<Dto> getEnderecos() {
-        return dataService.getAll();
+    public List<Dto> getEnderecos(@RequestParam(required = false) String rua,
+                                  @RequestParam(required = false) String bairro,
+                                  @RequestParam(required = false) String cidade,
+                                  @RequestParam(required = false) Estado estado) {
+        return dataService.findByFilter(new EnderecoFilter(rua, bairro, cidade, estado));
     }
 
     @Operation(
