@@ -20,7 +20,7 @@ public class PessoaController {
 
     @Autowired
     private PessoaDataService dataService;
-    
+
     @Operation(
             summary = "Realiza a persistência de uma pessoa.",
             description = "Persiste uma pessoa na base de dados. O objeto persistido será retornado no corpo da resposta.")
