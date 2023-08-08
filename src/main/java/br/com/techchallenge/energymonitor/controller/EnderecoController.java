@@ -30,7 +30,7 @@ public class EnderecoController {
             @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EnderecoDto.class), mediaType = "application/json") })
     })
     @PostMapping
-    public Dto saveEndereco(@Valid  @RequestBody EnderecoDto endereco) {
+    public Dto saveEndereco(@Valid @RequestBody EnderecoDto endereco) {
     	return dataService.save(endereco);
     }
 
@@ -52,6 +52,7 @@ public class EnderecoController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EnderecoDto.class), mediaType = "application/json")})
     })
+    @GetMapping
     public List<Dto> getEnderecos() {
         return dataService.getAll();
     }
