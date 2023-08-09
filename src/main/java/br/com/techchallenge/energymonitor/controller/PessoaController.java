@@ -85,9 +85,9 @@ public class PessoaController {
         dataService.delete(id);
     }
 
-    @PostMapping("/{id}/enderecos")
-    public PessoaDto updateEndereco(@PathVariable("id") Long id, @RequestBody EnderecoDto endereco) {
-        return dataService.updateEndereco(id, endereco);
+    @PostMapping("/{pessoaId}/enderecos")
+    public PessoaDto updateEndereco(@PathVariable("pessoaId") Long pessoaId, @RequestBody EnderecoDto endereco) {
+        return dataService.updateEndereco(pessoaId, endereco);
     }
 
 }

@@ -15,9 +15,9 @@ public class PessoaDataService extends DataService<Pessoa> {
         super(repository);
     }
 
-    public PessoaDto updateEndereco(Long id, EnderecoDto endereco) {
+    public PessoaDto updateEndereco(Long pessoaId, EnderecoDto endereco) {
         var pessoa = getRepository()
-            .findById(id)
+            .findById(pessoaId)
             .orElseThrow(EntityNotFoundException::new);
 
         pessoa.getEnderecos().add(endereco.toDomain());
