@@ -5,16 +5,17 @@ import br.com.techchallenge.energymonitor.dto.Dto;
 import br.com.techchallenge.energymonitor.exception.EnergyMonitorException;
 import br.com.techchallenge.energymonitor.repository.BaseRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
 @RequiredArgsConstructor
 public abstract class DataService<D extends Domain> {
 
     private final BaseRepository<D> repository;
-
 
     public Dto get(Long id) {
         return repository.findById(id)

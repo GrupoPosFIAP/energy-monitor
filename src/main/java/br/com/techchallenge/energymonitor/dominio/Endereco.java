@@ -1,15 +1,24 @@
 package br.com.techchallenge.energymonitor.dominio;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import br.com.techchallenge.energymonitor.dominio.enums.Estado;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
+@Entity
+@NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "endereco")
+@EqualsAndHashCode(callSuper = true)
 public class Endereco extends Domain {
 
     @JsonProperty

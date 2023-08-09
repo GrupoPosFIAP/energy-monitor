@@ -1,6 +1,19 @@
 package br.com.techchallenge.energymonitor.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import br.com.techchallenge.energymonitor.dto.Dto;
+import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import br.com.techchallenge.energymonitor.dto.PessoaDto;
 import br.com.techchallenge.energymonitor.service.PessoaDataService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,10 +22,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -39,8 +48,8 @@ public class PessoaController {
             @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = PessoaDto.class), mediaType = "application/json") })
     })
     @GetMapping("/{id}")
-    public Dto getPessoa(@PathVariable("id") Long id) {
-        return dataService.get(id);
+    public PessoaDto getPessoa(@PathVariable("id") Long id) {
+        return (PessoaDto) dataService.get(id);
     }
 
     @Operation(
@@ -74,6 +83,11 @@ public class PessoaController {
     @DeleteMapping("/{id}")
     public void deletePessoa(@PathVariable("id") Long id) {
         dataService.delete(id);
+    }
+
+    @PostMapping("/{id}/enderecos")
+    public PessoaDto updateEndereco(@PathVariable("id") Long id, @RequestBody EnderecoDto endereco) {
+        return dataService.updateEndereco(id, endereco);
     }
 
 }
