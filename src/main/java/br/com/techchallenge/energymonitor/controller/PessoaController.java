@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.techchallenge.energymonitor.dominio.enums.Parentesco;
 import br.com.techchallenge.energymonitor.dto.Dto;
-import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import br.com.techchallenge.energymonitor.dto.PessoaDto;
 import br.com.techchallenge.energymonitor.service.PessoaDataService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -85,9 +86,14 @@ public class PessoaController {
         dataService.delete(id);
     }
 
-    @PostMapping("/{pessoaId}/enderecos")
-    public PessoaDto updateEndereco(@PathVariable("pessoaId") Long pessoaId, @RequestBody EnderecoDto endereco) {
-        return dataService.updateEndereco(pessoaId, endereco);
+    @PostMapping("/{pessoaId}/enderecos/{enderecoId}")
+    public PessoaDto updateEndereco(@PathVariable("pessoaId") Long pessoaId, @PathVariable("enderecoId") Long enderecoId) {
+        return dataService.updateEndereco(pessoaId, enderecoId);
+    }
+
+    @PostMapping("/{pessoaId}/parentesco/{parenteId}")
+    public void createParentesco(@PathVariable("pessoaId") Long pessoaId, @PathVariable("parenteId") Long parenteId, @RequestParam("grau") Parentesco grau) {
+        dataService.updateParentesco(pessoaId, parenteId, grau);
     }
 
 }
