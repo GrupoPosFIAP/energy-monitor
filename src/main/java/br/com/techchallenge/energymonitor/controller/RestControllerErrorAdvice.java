@@ -2,6 +2,7 @@ package br.com.techchallenge.energymonitor.controller;
 
 import br.com.techchallenge.energymonitor.exception.ApiErrorResponse;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -41,6 +42,19 @@ public class RestControllerErrorAdvice {
         var jsonMappingException = (JsonMappingException) exception.getCause();
         var errorField = jsonMappingException.getPath().get(0).getFieldName();
         var message = String.format("Campo %s está inválido. Tente Novamente com um valor correto.", errorField);
+        var timestamp = LocalDateTime.now();
+        var errorResponse = new ApiErrorResponse(message, timestamp,
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.getReasonPhrase());
+
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    private ResponseEntity<ApiErrorResponse> handleEntityNotFoundException(EntityNotFoundException exception) {
+        exception.printStackTrace();
+        var message = exception.getMessage();
         var timestamp = LocalDateTime.now();
         var errorResponse = new ApiErrorResponse(message, timestamp,
                 HttpStatus.BAD_REQUEST.value(),
