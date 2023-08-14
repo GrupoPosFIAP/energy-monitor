@@ -5,7 +5,6 @@ import java.util.Set;
 
 import br.com.techchallenge.energymonitor.dominio.enums.Genero;
 import br.com.techchallenge.energymonitor.dto.PessoaDto;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -31,15 +30,15 @@ public class Pessoa extends Domain {
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "pessoas_enderecos", joinColumns = @JoinColumn(name = "pessoa_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "endereco_id", referencedColumnName = "id"))
     private Set<Endereco> enderecos;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "pessoas_eletronicos", joinColumns = @JoinColumn(name = "pessoa_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "eletronico_id", referencedColumnName = "id"))
     private Set<Eletronico> eletronicos;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa")
+    @OneToMany(mappedBy = "pessoa")
     private Set<GrauParentesco> parentes;
 
     public Pessoa(Long id, String nome, LocalDate dataNascimento, Genero genero) {

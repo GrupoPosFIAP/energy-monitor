@@ -91,9 +91,19 @@ public class PessoaController {
         return dataService.updateEndereco(pessoaId, enderecoId);
     }
 
+    @DeleteMapping("/{pessoaId}/enderecos/{enderecoId}")
+    public PessoaDto deleteEndereco(@PathVariable("pessoaId") Long pessoaId, @PathVariable("enderecoId") Long enderecoId) {
+        return dataService.deleteEndereco(pessoaId, enderecoId);
+    }
+
     @PostMapping("/{pessoaId}/parentesco/{parenteId}")
     public void createParentesco(@PathVariable("pessoaId") Long pessoaId, @PathVariable("parenteId") Long parenteId, @RequestParam("grau") Parentesco grau) {
         dataService.updateParentesco(pessoaId, parenteId, grau);
+    }
+
+    @DeleteMapping("/{pessoaId}/parentesco/{parenteId}")
+    public void deleteParentesco(@PathVariable("pessoaId") Long pessoaId, @PathVariable("parenteId") Long parenteId) {
+        dataService.deleteParentesco(pessoaId, parenteId);
     }
 
 }
