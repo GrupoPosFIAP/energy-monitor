@@ -3,7 +3,9 @@ package br.com.techchallenge.energymonitor.controller;
 import br.com.techchallenge.energymonitor.dominio.usuario.Usuario;
 import br.com.techchallenge.energymonitor.dominio.usuario.UsuarioBasico;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
+import br.com.techchallenge.energymonitor.dto.PessoaDto;
 import br.com.techchallenge.energymonitor.service.UsuarioService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
+    @Transactional
     public void createUsuario(@RequestBody Usuario usuario) {
         this.usuarioService.createUsuario(usuario);
     }
@@ -51,6 +54,18 @@ public class UsuarioController {
     @DeleteMapping("/endereco/{id}")
     public void deleteEndereco(@PathVariable Long id, @RequestParam(name = "enderecoId") Long enderecoId) {
         this.usuarioService.deleteEndereco(id, enderecoId);
+    }
+
+    // PESSOAS
+
+    @PutMapping("/pessoa/{id}")
+    public void updatePessoa(@PathVariable Long id, @RequestBody PessoaDto pessoaDto) {
+        this.usuarioService.updatePessoa(id, pessoaDto);
+    }
+
+    @DeleteMapping("/pessoa/{id}")
+    public void deletePessoa(@PathVariable Long id, @RequestParam(name = "pessoaId") Long pessoaId) {
+        this.usuarioService.deletePessoa(id, pessoaId);
     }
 
 }

@@ -1,9 +1,11 @@
 package br.com.techchallenge.energymonitor.service;
 
 import br.com.techchallenge.energymonitor.dominio.Endereco;
+import br.com.techchallenge.energymonitor.dominio.Pessoa;
 import br.com.techchallenge.energymonitor.dominio.usuario.Usuario;
 import br.com.techchallenge.energymonitor.dominio.usuario.UsuarioBasico;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
+import br.com.techchallenge.energymonitor.dto.PessoaDto;
 import br.com.techchallenge.energymonitor.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class UsuarioService {
 
     @Autowired
     private EnderecoDataService enderecoService;
+
+    @Autowired
+    private PessoaDataService pessoaService;
 
     public void createUsuario(Usuario usuario) {
         this.usuarioRepository.save(usuario);
@@ -75,5 +80,25 @@ public class UsuarioService {
 
     private Endereco findEnderecoById(Long enderecosIds) {
         return (Endereco) this.enderecoService.get(enderecosIds).toDomain();
+    }
+
+    public void updatePessoa(Long id, PessoaDto pessoaDto) {
+        Usuario usuario = findById(id);
+
+        usuario.addPessoa(pessoaDto.toDomain());
+
+        usuarioRepository.save(usuario);
+    }
+
+    public void deletePessoa(Long id, Long pessoaId) {
+        Pessoa pessoa = (Pessoa) this.pessoaService.get(pessoaId).toDomain();
+        Usuario usuario = findById(id);
+
+        if(!usuario.removePessoa(pessoa)) {
+            throw new RuntimeException("Pessoa informada é inválida ou não faz parte do usuário.");
+        }
+
+        this.usuarioRepository.save(usuario);
+
     }
 }

@@ -1,7 +1,9 @@
 package br.com.techchallenge.energymonitor.dominio.usuario;
 
 import br.com.techchallenge.energymonitor.dominio.Endereco;
+import br.com.techchallenge.energymonitor.dominio.Pessoa;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Transactional
 public class Usuario {
 
     @Id
@@ -19,8 +22,11 @@ public class Usuario {
     private String username;
     private String cpf;
     private String email;
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Endereco> enderecos;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Pessoa> pessoas;
 
     public Long getId() {
         return id;
@@ -72,6 +78,18 @@ public class Usuario {
 
     public boolean removeEndereco(Endereco endereco) {
         return this.enderecos.remove(endereco);
+    }
+
+    public List<Pessoa> getPessoas() {
+        return pessoas;
+    }
+
+    public void addPessoa(Pessoa pessoa) {
+        this.pessoas.add(pessoa);
+    }
+
+    public boolean removePessoa(Pessoa pessoa) {
+        return this.pessoas.remove(pessoa);
     }
 
 }
