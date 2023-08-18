@@ -1,14 +1,14 @@
 package br.com.techchallenge.energymonitor.dto;
 
+import br.com.techchallenge.energymonitor.dominio.endereco.Endereco;
+import br.com.techchallenge.energymonitor.dominio.enums.Estado;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import br.com.techchallenge.energymonitor.dominio.Endereco;
-import br.com.techchallenge.energymonitor.dominio.enums.Estado;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
@@ -16,11 +16,14 @@ public class EnderecoDto implements Dto {
 
     private final Long id;
 
+    @JsonProperty
     @NotBlank(message = "Informe a rua")
     private final String rua;
 
-    @NotBlank(message = "Informe o número da residência")
-    private final int numero;
+    @JsonProperty
+    @NotNull(message = "Informe o número da residência")
+    @Positive(message = "Número da residência deve ser positivo")
+    private final Integer numero;
 
     @NotBlank(message = "Informe o bairro")
     private final String bairro;
@@ -28,13 +31,14 @@ public class EnderecoDto implements Dto {
     @NotBlank(message = "Informe a cidade")
     private final String cidade;
 
-    @NotBlank(message = "Informe o estado")
+    @JsonProperty
+    @NotNull(message = "Informe o estado")
     private final Estado estado;
 
     @JsonCreator
     public EnderecoDto(Long id, String rua,
-            @JsonFormat(shape = Shape.STRING) int numero, String bairro, String cidade,
-            @JsonFormat(shape = Shape.STRING) Estado estado) {
+                       @JsonFormat(shape = Shape.STRING) Integer numero, String bairro, String cidade,
+                       @JsonFormat(shape = Shape.STRING) Estado estado) {
         this.id = id;
         this.rua = rua;
         this.numero = numero;
