@@ -15,7 +15,7 @@
 // import com.fasterxml.jackson.databind.JsonMappingException;
 // import com.fasterxml.jackson.databind.ObjectMapper;
 
-// import br.com.techchallenge.energymonitor.dominio.Endereco;
+// import br.com.techchallenge.energymonitor.dominio.endereco.Endereco;
 // import br.com.techchallenge.energymonitor.dominio.enums.Estado;
 // import jakarta.validation.Validation;
 // import jakarta.validation.Validator;

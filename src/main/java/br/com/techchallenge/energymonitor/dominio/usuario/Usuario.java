@@ -1,32 +1,45 @@
 package br.com.techchallenge.energymonitor.dominio.usuario;
 
-import br.com.techchallenge.energymonitor.dominio.Endereco;
 import br.com.techchallenge.energymonitor.dominio.Pessoa;
+import br.com.techchallenge.energymonitor.dominio.endereco.Endereco;
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Transactional
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomeCompleto;
+    @Column(unique = true)
     private String username;
+    @Column(unique = true)
+    @CPF(message = "CPF inválido.")
     private String cpf;
+    @Column(unique = true)
+    @Email(message = "Email inválido.")
     private String email;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Endereco> enderecos;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Pessoa> pessoas;
+
+    public Usuario(UsuarioBasico usuarioBasico) {
+        this.nomeCompleto = usuarioBasico.nomeCompleto();
+        this.username = usuarioBasico.username();
+        this.cpf = usuarioBasico.cpf();
+        this.email = usuarioBasico.email();
+    }
 
     public Long getId() {
         return id;
@@ -82,6 +95,10 @@ public class Usuario {
 
     public List<Pessoa> getPessoas() {
         return pessoas;
+    }
+
+    public void setPessoas(List<Pessoa> pessoas) {
+        this.pessoas = pessoas;
     }
 
     public void addPessoa(Pessoa pessoa) {

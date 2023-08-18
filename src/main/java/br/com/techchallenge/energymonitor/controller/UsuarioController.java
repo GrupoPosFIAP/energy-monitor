@@ -5,7 +5,6 @@ import br.com.techchallenge.energymonitor.dominio.usuario.UsuarioBasico;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import br.com.techchallenge.energymonitor.dto.PessoaDto;
 import br.com.techchallenge.energymonitor.service.UsuarioService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,6 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    @Transactional
     public void createUsuario(@RequestBody Usuario usuario) {
         this.usuarioService.createUsuario(usuario);
     }

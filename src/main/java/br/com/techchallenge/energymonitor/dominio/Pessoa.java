@@ -2,12 +2,17 @@ package br.com.techchallenge.energymonitor.dominio;
 
 import br.com.techchallenge.energymonitor.dominio.enums.Genero;
 import br.com.techchallenge.energymonitor.dominio.enums.Parentesco;
-import br.com.techchallenge.energymonitor.dominio.usuario.Usuario;
 import br.com.techchallenge.energymonitor.dto.PessoaDto;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -23,11 +28,6 @@ public class Pessoa extends Domain {
 
     @Enumerated(EnumType.STRING)
     private Parentesco parentesco;
-
-    @ManyToOne
-    @Getter
-    @Setter
-    private Usuario usuario;
 
     public Pessoa(Long id, String nome, LocalDate dataNascimento, Genero genero, Parentesco parentesco) {
         super(id);

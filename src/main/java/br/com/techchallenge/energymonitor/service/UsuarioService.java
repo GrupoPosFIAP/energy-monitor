@@ -1,7 +1,7 @@
 package br.com.techchallenge.energymonitor.service;
 
-import br.com.techchallenge.energymonitor.dominio.Endereco;
 import br.com.techchallenge.energymonitor.dominio.Pessoa;
+import br.com.techchallenge.energymonitor.dominio.endereco.Endereco;
 import br.com.techchallenge.energymonitor.dominio.usuario.Usuario;
 import br.com.techchallenge.energymonitor.dominio.usuario.UsuarioBasico;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
@@ -41,10 +41,10 @@ public class UsuarioService {
     public void updateUsuario(Long id, UsuarioBasico usuarioBasico) {
         Usuario usuario = findById(id);
 
-        usuario.setCpf(usuarioBasico.getCpf());
-        usuario.setEmail(usuarioBasico.getEmail());
-        usuario.setNomeCompleto(usuarioBasico.getNomeCompleto());
-        usuario.setUsername(usuarioBasico.getUsername());
+        usuario.setCpf(usuarioBasico.cpf());
+        usuario.setEmail(usuarioBasico.email());
+        usuario.setNomeCompleto(usuarioBasico.nomeCompleto());
+        usuario.setUsername(usuarioBasico.username());
 
         this.usuarioRepository.save(usuario);
     }
@@ -84,6 +84,8 @@ public class UsuarioService {
 
     public void updatePessoa(Long id, PessoaDto pessoaDto) {
         Usuario usuario = findById(id);
+
+        Pessoa pessoa = pessoaDto.toDomain();
 
         usuario.addPessoa(pessoaDto.toDomain());
 
