@@ -54,7 +54,7 @@ public class RestControllerErrorAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     private ResponseEntity<ApiErrorResponse> handleEntityNotFoundException(EntityNotFoundException exception) {
         exception.printStackTrace();
-        var message = exception.getMessage();
+        var message = exception.getMessage() != null ? exception.getMessage() : "Entidade não encontrada.";
         var timestamp = LocalDateTime.now();
         var errorResponse = new ApiErrorResponse(message, timestamp,
                 HttpStatus.BAD_REQUEST.value(),
