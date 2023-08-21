@@ -27,7 +27,7 @@ public class ConsumoDataService extends DataService<Consumo> {
         super(repository);
     }
 
-    public List<Dto> calculadoRepository(Long id, ConsumoUpdater updated) {
+    public List<Dto> atualizarConsumo(Long id, ConsumoUpdater updated) {
         return calculadoRepository.atualizarConsumo(id, updated).stream().map(Domain::toDto).toList();
     }
 }
