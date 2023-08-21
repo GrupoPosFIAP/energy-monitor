@@ -41,4 +41,5 @@ public class Pessoa extends Domain {
     public PessoaDto toDto() {
         return new PessoaDto(getId(), nome, dataNascimento, genero, parentesco);
     }
+
 }
