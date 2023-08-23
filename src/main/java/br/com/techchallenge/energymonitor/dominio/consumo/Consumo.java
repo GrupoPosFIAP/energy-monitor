@@ -6,15 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.function.UnaryOperator;
 
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "tb_consumo")
-public class Consumo extends Domain {
+@Table(name = "consumo")
+@EqualsAndHashCode(callSuper = true)
+public class Consumo extends Domain  {
 
     @JsonProperty
     private Instant inicioFuncionamento;
@@ -22,7 +25,6 @@ public class Consumo extends Domain {
     @JsonProperty
     private Instant fimFuncionamento;
 
-    @JsonProperty
     private Double consumo;
 
     public Consumo(Long id, Instant inicioFuncionamento, Instant fimFuncionamento, Double consumo) {

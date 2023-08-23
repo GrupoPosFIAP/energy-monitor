@@ -2,7 +2,7 @@ package br.com.techchallenge.energymonitor.controller;
 
 import br.com.techchallenge.energymonitor.dto.ConsumoDTO;
 import br.com.techchallenge.energymonitor.dto.Dto;
-import br.com.techchallenge.energymonitor.service.ConsumoDataService;
+import br.com.techchallenge.energymonitor.service.ConsumoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,7 +21,7 @@ public class ConsumoController {
 
     @Autowired
     @Qualifier("consumoDataService")
-    private ConsumoDataService dataService;
+    private ConsumoService consumoService;
 
 
     @Operation(summary     = "Realiza a persistência do Painel de Consumo.",
@@ -29,7 +29,7 @@ public class ConsumoController {
     @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = ConsumoDTO.class), mediaType = "application/json")})})
     @PostMapping
     public Dto saveConsumo(@Valid @RequestBody ConsumoDTO dto) {
-        return dataService.save(dto);
+        return consumoService.save(dto);
     }
 
 
@@ -38,7 +38,7 @@ public class ConsumoController {
     @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = ConsumoDTO.class), mediaType = "application/json")})})
     @GetMapping("/{id}")
     public Dto getConsumo(@PathVariable("id") Long id) {
-        return dataService.get(id);
+        return consumoService.get(id);
     }
 
 
@@ -47,7 +47,7 @@ public class ConsumoController {
     @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = ConsumoDTO.class), mediaType = "application/json")})})
     @GetMapping
     public List<Dto> getConsumos() {
-        return dataService.getAll();
+        return consumoService.getAll();
     }
 
 
@@ -56,6 +56,6 @@ public class ConsumoController {
     @ApiResponses({@ApiResponse(responseCode = "201", content = {@Content(schema = @Schema(implementation = ConsumoDTO.class), mediaType = "application/json")})})
     @PutMapping("/{id}")
     public Dto updateConsumo(@PathVariable(value = "id") Long id, @Valid @RequestBody ConsumoDTO dto) {
-        return dataService.update(id, dto);
+        return consumoService.updateConsumo(id, dto);
     }
 }

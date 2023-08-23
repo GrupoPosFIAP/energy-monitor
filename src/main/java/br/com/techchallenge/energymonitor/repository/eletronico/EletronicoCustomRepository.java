@@ -33,22 +33,18 @@ public class EletronicoCustomRepository {
     }
 
     private void addCustomParameters(StringBuilder sql, EletronicoFilter filter) {
-
         if (filter.nome() != null && !filter.nome().isEmpty()) {
             sql.append(" AND nome LIKE :nome");
         }
-
         if (filter.modelo() != null && !filter.modelo().isEmpty()) {
             sql.append(" AND modelo LIKE :modelo");
         }
     }
 
     private void addCustomValues(MapSqlParameterSource param, EletronicoFilter filter) {
-
         if (filter.nome() != null && !filter.nome().isEmpty()) {
             param.addValue("nome", "%" + filter.nome() + "%");
         }
-
         if (filter.modelo() != null && !filter.modelo().isEmpty()) {
             param.addValue("modelo", "%" + filter.modelo() + "%");
         }

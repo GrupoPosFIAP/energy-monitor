@@ -19,7 +19,6 @@ public class ConsumoDTO implements Dto {
     @JsonProperty
     private final Instant fimFuncionamento;
 
-    @JsonProperty
     private final Double consumo;
 
     @JsonCreator

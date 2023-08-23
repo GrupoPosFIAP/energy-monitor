@@ -1,10 +1,11 @@
 package br.com.techchallenge.energymonitor.controller;
 
+import br.com.techchallenge.energymonitor.dominio.eletronico.Eletronico;
 import br.com.techchallenge.energymonitor.dominio.eletronico.EletronicoFilter;
+import br.com.techchallenge.energymonitor.dto.ConsumoDTO;
 import br.com.techchallenge.energymonitor.dto.Dto;
 import br.com.techchallenge.energymonitor.dto.EletronicoDto;
-import br.com.techchallenge.energymonitor.service.DataService;
-import br.com.techchallenge.energymonitor.service.EletronicoDataService;
+import br.com.techchallenge.energymonitor.service.EletronicoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,26 +13,24 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/eletronicos")
-public class EletronicosController {
+public class EletronicoController {
 
     @Autowired
-    @Qualifier("eletronicoDataService")
-    private EletronicoDataService dataService;
+    private EletronicoService eletronicoService;
 
 
     @Operation(summary = "Realiza a persistência de um eletrodoméstico.",
                description = "Persiste um eletrodoméstico na base de dados. O objeto persistido será retornado no corpo da resposta.")
     @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EletronicoDto.class), mediaType = "application/json")})})
     @PostMapping
-    public Dto saveEletronico(@Valid @RequestBody EletronicoDto eletronico) {
-        return dataService.save(eletronico);
+    public void createEletronico(@Valid @RequestBody Eletronico eletronico) {
+        this.eletronicoService.createEletronico(eletronico);
     }
 
 
@@ -39,8 +38,17 @@ public class EletronicosController {
                description = "Consulta eletrodoméstico cadastrado pelo ID. Se encontrado, o objeto será retornado no corpo da resposta.")
     @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EletronicoDto.class), mediaType = "application/json")})})
     @GetMapping("/{id}")
-    public Dto getEletronico(@PathVariable("") Long id) {
-        return dataService.get(id);
+    public Eletronico findById(@PathVariable("id") Long id) {
+        return eletronicoService.findById(id);
+    }
+
+
+    @Operation(summary = "Consulta todos os eletrodomésticos cadastrados",
+            description = "Consulta todos os eletrodomésticos cadastrados. Se encontrado, retornará uma lista de eletrodomésticos.")
+    @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EletronicoDto.class), mediaType = "application/json")})})
+    @GetMapping
+    public List<Eletronico> findAll() {
+        return this.eletronicoService.findAll();
     }
 
 
@@ -48,9 +56,10 @@ public class EletronicosController {
                description = "Consulta todos os eletrodomésticos cadastrados. Se encontrado, retornará uma lista de eletrodomésticos.")
     @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EletronicoDto.class), mediaType = "application/json")})})
     @GetMapping
-    public List<Dto> getEletrodomésticos(@RequestParam(required = false) String nome,
-                                         @RequestParam(required = false) String modelo) {
-        return dataService.findByFilter(new EletronicoFilter(nome, modelo));
+    public List<Dto> findByFilter(@RequestParam(required = false) String nome,
+                                  @RequestParam(required = false) String modelo,
+                                  @RequestParam(required = false) int potencia) {
+        return eletronicoService.findByFilter(new EletronicoFilter(nome, modelo, potencia));
     }
 
 
@@ -58,8 +67,8 @@ public class EletronicosController {
                description = "Atualiza um eletrodoméstico já cadastrado se o id for encontrado e retornará o eletrodoméstico atualizado na resposta.")
     @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EletronicoDto.class), mediaType = "application/json")})})
     @PutMapping("/{id}")
-    public Dto updateEletronico(@PathVariable(required = false, value = "id") Long id, @Valid @RequestBody EletronicoDto dto) {
-        return dataService.update(id, dto);
+    public void updateEletronico(@PathVariable(required = false, value = "id") Long id, @Valid @RequestBody EletronicoDto dto) {
+        this.eletronicoService.updateEletronico(id, dto);
     }
 
 
@@ -68,15 +77,21 @@ public class EletronicosController {
     @ApiResponses({@ApiResponse(responseCode = "204", content = {@Content(mediaType = "application/json")})})
     @DeleteMapping("/{id}")
     public void deleteEletronico(@PathVariable("id") Long id) {
-        dataService.delete(id);
+        eletronicoService.deleteEletronico(id);
     }
 
 
-    @Operation(summary = "Consulta todos os eletrodomésticos cadastrados",
-               description = "Consulta todos os eletrodomésticos cadastrados. Se encontrado, retornará uma lista de eletrodomésticos.")
-    @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EletronicoDto.class), mediaType = "application/json")})})
-    @GetMapping
-    public List<Dto> getEnderecos() {
-        return dataService.getAll();
+
+
+    // CONSUMO
+    @PostMapping("/consumo/{id}")
+    public void saveConsumo(@PathVariable Long id, @RequestBody ConsumoDTO consumoDTO) {
+        this.eletronicoService.saveConsumo(id, consumoDTO);
+    }
+
+
+    @PutMapping("/consumo/{id}")
+    public void updateConsumo(@PathVariable Long id, @RequestBody ConsumoDTO consumoDTO) {
+        this.eletronicoService.updateConsumo(id, consumoDTO);
     }
 }
