@@ -1,7 +1,8 @@
 package br.com.techchallenge.energymonitor.controller;
 
 import br.com.techchallenge.energymonitor.dto.Dto;
-import br.com.techchallenge.energymonitor.dto.PessoaDto;
+import br.com.techchallenge.energymonitor.dto.pessoa.PessoaDto;
+import br.com.techchallenge.energymonitor.dto.pessoa.PessoaUsuarioDTO;
 import br.com.techchallenge.energymonitor.service.PessoaDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -10,9 +11,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -25,10 +26,10 @@ public class PessoaController {
             summary = "Realiza a persistência de uma pessoa.",
             description = "Persiste uma pessoa na base de dados. O objeto persistido será retornado no corpo da resposta.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = PessoaDto.class), mediaType = "application/json") })
+            @ApiResponse(responseCode = "201", content = {@Content(schema = @Schema(implementation = PessoaUsuarioDTO.class), mediaType = "application/json") })
     })
     @PostMapping
-    public Dto savePessoa(@Valid @RequestBody PessoaDto pessoa) {
+    public PessoaUsuarioDTO savePessoa(@Valid @RequestBody PessoaUsuarioDTO pessoa) {
         return dataService.save(pessoa);
     }
 
@@ -46,12 +47,12 @@ public class PessoaController {
     @Operation(
             summary = "Consulta todas as pessoas cadastradas",
             description = "Consulta todas as pessoas cadastradas. Se encontrado, retornará uma lista de pessoas.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = PessoaDto.class), mediaType = "application/json") })
-    })
     @GetMapping
-    public List<Dto> getPessoas() {
-        return dataService.getAll();
+        public Page<PessoaUsuarioDTO> getPessoas(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "25") Integer pageSize
+    ) {
+        return dataService.findAll(PageRequest.of(page, pageSize));
     }
 
     @Operation(

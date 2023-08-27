@@ -2,11 +2,9 @@ package br.com.techchallenge.energymonitor.dominio;
 
 import br.com.techchallenge.energymonitor.dominio.enums.Genero;
 import br.com.techchallenge.energymonitor.dominio.enums.Parentesco;
-import br.com.techchallenge.energymonitor.dto.PessoaDto;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import br.com.techchallenge.energymonitor.dto.pessoa.PessoaDto;
+import br.com.techchallenge.energymonitor.dto.pessoa.PessoaUsuarioDTO;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -29,12 +27,24 @@ public class Pessoa extends Domain {
     @Enumerated(EnumType.STRING)
     private Parentesco parentesco;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     public Pessoa(Long id, String nome, LocalDate dataNascimento, Genero genero, Parentesco parentesco) {
         super(id);
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.genero = genero;
         this.parentesco = parentesco;
+    }
+
+    public Pessoa(PessoaUsuarioDTO pessoaDTO) {
+
+        this.nome = pessoaDTO.nome();
+        this.dataNascimento = pessoaDTO.dataNascimento();
+        this.genero = pessoaDTO.genero();
+        this.parentesco = pessoaDTO.parentesco();
     }
 
     @Override
