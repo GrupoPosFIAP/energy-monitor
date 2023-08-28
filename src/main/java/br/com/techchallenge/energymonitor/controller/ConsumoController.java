@@ -1,5 +1,6 @@
 package br.com.techchallenge.energymonitor.controller;
 
+import br.com.techchallenge.energymonitor.dominio.consumo.Consumo;
 import br.com.techchallenge.energymonitor.dto.ConsumoDTO;
 import br.com.techchallenge.energymonitor.dto.Dto;
 import br.com.techchallenge.energymonitor.repository.consumo.ConsumoRepository;
@@ -23,11 +24,7 @@ import java.util.List;
 public class ConsumoController {
 
     @Autowired
-    @Qualifier("consumoDataService")
     private ConsumoService consumoService;
-
-    @Autowired
-    private ConsumoUpdateRepository consumoUpdateRepository;
 
     @Operation(summary     = "Realiza a persistência do Painel de Consumo.",
                description = "Persisite o consumo na base de dados. O objeto persistido será retornado no corpo da resposta.")
@@ -60,7 +57,7 @@ public class ConsumoController {
                description = "Atualiza e calcula consumo de eletrônico. Se id for encontrado atualiza e retorna consumo atualizado na resposta.")
     @ApiResponses({@ApiResponse(responseCode = "201", content = {@Content(schema = @Schema(implementation = ConsumoDTO.class), mediaType = "application/json")})})
     @PutMapping("/{id}")
-    public Dto updateConsumo(@PathVariable(value = "id") Long id, @Valid @RequestBody ConsumoDTO dto) {
-        return consumoUpdateRepository.updateConsumo(id, dto);
+    public Consumo updateConsumo(@PathVariable(value = "id") Long id) {
+        return consumoService.updateConsumo(id);
     }
 }
