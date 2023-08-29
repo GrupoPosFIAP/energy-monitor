@@ -55,7 +55,7 @@ public class EletronicoController {
     @Operation(summary = "Consulta todos os eletrodomésticos cadastrados",
                description = "Consulta todos os eletrodomésticos cadastrados. Se encontrado, retornará uma lista de eletrodomésticos.")
     @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EletronicoDto.class), mediaType = "application/json")})})
-    @GetMapping
+    @GetMapping("/filter")
     public List<Dto> findByFilter(@RequestParam(required = false) String nome,
                                   @RequestParam(required = false) String modelo,
                                   @RequestParam(required = false) int potencia) {
