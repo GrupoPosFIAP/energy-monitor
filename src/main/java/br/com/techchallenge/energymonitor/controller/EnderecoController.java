@@ -91,5 +91,4 @@ public class EnderecoController {
     public List<Dto> getEnderecos() {
         return dataService.getAll();
     }
-
 }

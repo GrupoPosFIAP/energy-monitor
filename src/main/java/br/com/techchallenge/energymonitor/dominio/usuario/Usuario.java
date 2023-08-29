@@ -28,6 +28,7 @@ public class Usuario {
     @Column(unique = true)
     @Email(message = "Email inválido.")
     private String email;
+
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Endereco> enderecos;
 
