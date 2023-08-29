@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "usuario")
 public class Usuario {
 
     @Id
@@ -37,7 +36,7 @@ public class Usuario {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Endereco> enderecos;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Pessoa> pessoas;
 
     public Usuario(UsuarioBasicoDTO usuarioBasicoDTO) {
@@ -138,10 +137,6 @@ public class Usuario {
 
     public Set<Pessoa> getPessoas() {
         return pessoas;
-    }
-
-    public void setPessoas(Set<Pessoa> pessoas) {
-        this.pessoas = pessoas;
     }
 
     public void addPessoa(Pessoa pessoa) {
