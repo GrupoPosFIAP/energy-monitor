@@ -1,17 +1,17 @@
 package br.com.techchallenge.energymonitor.service;
 
-import br.com.techchallenge.energymonitor.dominio.Pessoa;
+import br.com.techchallenge.energymonitor.dominio.Usuario;
 import br.com.techchallenge.energymonitor.dominio.endereco.Endereco;
-import br.com.techchallenge.energymonitor.dominio.usuario.Usuario;
-import br.com.techchallenge.energymonitor.dominio.usuario.UsuarioBasico;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
-import br.com.techchallenge.energymonitor.dto.PessoaDto;
+import br.com.techchallenge.energymonitor.dto.usuario.UsuarioBasicoDTO;
+import br.com.techchallenge.energymonitor.dto.usuario.UsuarioEnderecoDTO;
 import br.com.techchallenge.energymonitor.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsuarioService {
@@ -25,35 +25,39 @@ public class UsuarioService {
     @Autowired
     private PessoaDataService pessoaService;
 
-    public void createUsuario(Usuario usuario) {
+    @Transactional
+    public void createUsuario(UsuarioEnderecoDTO usuarioEnderecoDTO) {
+        var usuario = UsuarioEnderecoDTO.toEntity(usuarioEnderecoDTO);
         this.usuarioRepository.save(usuario);
     }
 
-    public List<Usuario> findAll() {
-        return this.usuarioRepository.findAll();
+    @Transactional(readOnly = true)
+    public Page<UsuarioBasicoDTO> findAll(PageRequest pageRequest) {
+        var usuarios = this.usuarioRepository.findAll(pageRequest);
+        return usuarios.map(UsuarioBasicoDTO::fromEntity);
     }
 
+    @Transactional(readOnly = true)
     public Usuario findById(Long id) {
-        return this.usuarioRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado."));
+        return this.usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado."));
     }
 
-    public void updateUsuario(Long id, UsuarioBasico usuarioBasico) {
+    @Transactional
+    public void updateUsuario(Long id, UsuarioEnderecoDTO usuarioEnderecoDTO) {
         Usuario usuario = findById(id);
 
-        usuario.setCpf(usuarioBasico.cpf());
-        usuario.setEmail(usuarioBasico.email());
-        usuario.setNomeCompleto(usuarioBasico.nomeCompleto());
-        usuario.setUsername(usuarioBasico.username());
+        UsuarioEnderecoDTO.mapperDtoToEntity(usuarioEnderecoDTO, usuario);
 
         this.usuarioRepository.save(usuario);
     }
 
+    @Transactional
     public void deleteUsuario(Long id) {
         Usuario usuario = findById(id);
         this.usuarioRepository.delete(usuario);
     }
 
+    @Transactional
     public void updateEndereco(Long id, EnderecoDto enderecoDto) {
         Usuario usuario = findById(id);
 
@@ -62,16 +66,17 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
+    @Transactional
     public void deleteEndereco(Long id, Long enderecoId) {
-        if(enderecoId == null) {
+        if (enderecoId == null) {
             throw new RuntimeException("ID do endereço inválido.");
         }
 
         Endereco endereco = findEnderecoById(enderecoId);
         Usuario usuario = findById(id);
 
-        if(!usuario.removeEndereco(endereco)) {
-            throw new RuntimeException("Endereço informado é inválido ou não faz parte do usuário.");
+        if (!usuario.removeEndereco(endereco)) {
+            throw new EntityNotFoundException("Endereço informado é inválido ou não faz parte do usuário.");
         }
 
         this.usuarioRepository.save(usuario);
@@ -82,25 +87,4 @@ public class UsuarioService {
         return (Endereco) this.enderecoService.get(enderecosIds).toDomain();
     }
 
-    public void updatePessoa(Long id, PessoaDto pessoaDto) {
-        Usuario usuario = findById(id);
-
-        Pessoa pessoa = pessoaDto.toDomain();
-
-        usuario.addPessoa(pessoaDto.toDomain());
-
-        usuarioRepository.save(usuario);
-    }
-
-    public void deletePessoa(Long id, Long pessoaId) {
-        Pessoa pessoa = (Pessoa) this.pessoaService.get(pessoaId).toDomain();
-        Usuario usuario = findById(id);
-
-        if(!usuario.removePessoa(pessoa)) {
-            throw new RuntimeException("Pessoa informada é inválida ou não faz parte do usuário.");
-        }
-
-        this.usuarioRepository.save(usuario);
-
-    }
 }

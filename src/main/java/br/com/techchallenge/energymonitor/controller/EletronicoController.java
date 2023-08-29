@@ -67,7 +67,7 @@ public class EletronicoController {
                description = "Atualiza um eletrodoméstico já cadastrado se o id for encontrado e retornará o eletrodoméstico atualizado na resposta.")
     @ApiResponses({@ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = EletronicoDto.class), mediaType = "application/json")})})
     @PutMapping("/{id}")
-    public void updateEletronico(@PathVariable(required = false, value = "id") Long id, @Valid @RequestBody EletronicoDto dto) {
+    public void updateEletronico(@PathVariable(required = true, value = "id") Long id, @Valid @RequestBody EletronicoDto dto) {
         this.eletronicoService.updateEletronico(id, dto);
     }
 
@@ -91,7 +91,7 @@ public class EletronicoController {
 
 
     @PutMapping("/consumo/{id}")
-    public void updateConsumo(@PathVariable Long id, @RequestBody ConsumoDTO consumoDTO) {
-        this.eletronicoService.updateConsumo(id, consumoDTO);
+    public void updateConsumo(@PathVariable Long id, @RequestParam(name = "consumoId") Long consumoId) {
+        this.eletronicoService.updateConsumo(id, consumoId);
     }
 }

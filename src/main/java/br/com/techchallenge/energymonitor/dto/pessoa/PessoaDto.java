@@ -1,8 +1,9 @@
-package br.com.techchallenge.energymonitor.dto;
+package br.com.techchallenge.energymonitor.dto.pessoa;
 
 import br.com.techchallenge.energymonitor.dominio.Pessoa;
 import br.com.techchallenge.energymonitor.dominio.enums.Genero;
 import br.com.techchallenge.energymonitor.dominio.enums.Parentesco;
+import br.com.techchallenge.energymonitor.dto.Dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;

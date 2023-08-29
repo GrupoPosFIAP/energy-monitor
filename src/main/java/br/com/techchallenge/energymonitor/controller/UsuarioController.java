@@ -1,14 +1,14 @@
 package br.com.techchallenge.energymonitor.controller;
 
-import br.com.techchallenge.energymonitor.dominio.usuario.Usuario;
-import br.com.techchallenge.energymonitor.dominio.usuario.UsuarioBasico;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
-import br.com.techchallenge.energymonitor.dto.PessoaDto;
+import br.com.techchallenge.energymonitor.dto.usuario.UsuarioBasicoDTO;
+import br.com.techchallenge.energymonitor.dto.usuario.UsuarioDTO;
+import br.com.techchallenge.energymonitor.dto.usuario.UsuarioEnderecoDTO;
 import br.com.techchallenge.energymonitor.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
@@ -18,23 +18,26 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public void createUsuario(@RequestBody Usuario usuario) {
-        this.usuarioService.createUsuario(usuario);
+    public void createUsuario(@RequestBody UsuarioEnderecoDTO usuarioEnderecoDTO) {
+        this.usuarioService.createUsuario(usuarioEnderecoDTO);
     }
 
     @GetMapping
-    public List<Usuario> findAll() {
-        return this.usuarioService.findAll();
+    public Page<UsuarioBasicoDTO> findAll(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "25") Integer pageSize
+    ) {
+        return this.usuarioService.findAll(PageRequest.of(page, pageSize));
     }
 
     @GetMapping("/{id}")
-    public Usuario findById(@PathVariable Long id) {
-        return this.usuarioService.findById(id);
+    public UsuarioDTO findById(@PathVariable Long id) {
+        return UsuarioDTO.fromEntity(this.usuarioService.findById(id));
     }
 
     @PutMapping("/{id}")
-    public void updateUsuario(@PathVariable Long id, @RequestBody UsuarioBasico usuarioBasico) {
-        this.usuarioService.updateUsuario(id, usuarioBasico);
+    public void updateUsuario(@PathVariable Long id, @RequestBody UsuarioEnderecoDTO usuarioEnderecoDTO) {
+        this.usuarioService.updateUsuario(id, usuarioEnderecoDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -52,18 +55,6 @@ public class UsuarioController {
     @DeleteMapping("/endereco/{id}")
     public void deleteEndereco(@PathVariable Long id, @RequestParam(name = "enderecoId") Long enderecoId) {
         this.usuarioService.deleteEndereco(id, enderecoId);
-    }
-
-    // PESSOAS
-
-    @PutMapping("/pessoa/{id}")
-    public void updatePessoa(@PathVariable Long id, @RequestBody PessoaDto pessoaDto) {
-        this.usuarioService.updatePessoa(id, pessoaDto);
-    }
-
-    @DeleteMapping("/pessoa/{id}")
-    public void deletePessoa(@PathVariable Long id, @RequestParam(name = "pessoaId") Long pessoaId) {
-        this.usuarioService.deletePessoa(id, pessoaId);
     }
 
 }

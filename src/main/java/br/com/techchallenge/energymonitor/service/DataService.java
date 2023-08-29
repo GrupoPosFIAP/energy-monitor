@@ -6,6 +6,8 @@ import br.com.techchallenge.energymonitor.exception.EnergyMonitorException;
 import br.com.techchallenge.energymonitor.repository.BaseRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +28,10 @@ public abstract class DataService<D extends Domain> {
         return repository.findAll().stream()
                 .map(Domain::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public Page<Dto> getAll(PageRequest pageRequest) {
+        return repository.findAll(pageRequest).map(Domain::toDto);
     }
 
     @SuppressWarnings("unchecked")

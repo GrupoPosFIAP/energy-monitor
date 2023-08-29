@@ -3,6 +3,7 @@ package br.com.techchallenge.energymonitor.controller;
 import br.com.techchallenge.energymonitor.exception.ApiErrorResponse;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -63,6 +64,21 @@ public class RestControllerErrorAdvice {
         return ResponseEntity.badRequest().body(errorResponse);
     }
 
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    private ResponseEntity<ApiErrorResponse> handleConstraintViolationException(ConstraintViolationException exception) {
+        exception.printStackTrace();
+        var message = exception.getConstraintViolations().stream().findFirst().isPresent()
+                ? exception.getConstraintViolations().stream().findFirst().get().getMessage()
+                : "Parâmetros inválidos.";
+        var timestamp = LocalDateTime.now();
+        var errorResponse = new ApiErrorResponse(message, timestamp,
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+
+        return ResponseEntity.internalServerError().body(errorResponse);
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     private ResponseEntity<ApiErrorResponse> handleGenericException(Exception exception) {
@@ -74,5 +90,5 @@ public class RestControllerErrorAdvice {
         HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
 
         return ResponseEntity.internalServerError().body(errorResponse);
-    }    
+    }
 }

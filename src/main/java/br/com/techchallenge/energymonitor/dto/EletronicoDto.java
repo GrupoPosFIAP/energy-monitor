@@ -1,13 +1,15 @@
 package br.com.techchallenge.energymonitor.dto;
 
+import br.com.techchallenge.energymonitor.dominio.eletronico.Eletronico;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import br.com.techchallenge.energymonitor.dominio.eletronico.Eletronico;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class EletronicoDto implements Dto {
@@ -23,9 +25,12 @@ public class EletronicoDto implements Dto {
     private String modelo;
 
     @JsonProperty
-    @NotBlank(message = "Informe a potência do eletrônico")
+    @NotNull(message = "Informe a potência do eletrônico")
     @Positive(message = "A potência do eletrônico deve ser positiva")
     private int potencia;
+
+    @JsonProperty
+    List<ConsumoDTO> consumos;
 
     @JsonCreator
     public EletronicoDto(Long id, String nome, String modelo,
