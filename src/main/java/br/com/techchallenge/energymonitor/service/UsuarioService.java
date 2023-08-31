@@ -2,6 +2,7 @@ package br.com.techchallenge.energymonitor.service;
 
 import br.com.techchallenge.energymonitor.dominio.Usuario;
 import br.com.techchallenge.energymonitor.dominio.endereco.Endereco;
+import br.com.techchallenge.energymonitor.dto.EletronicoDto;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import br.com.techchallenge.energymonitor.dto.usuario.UsuarioBasicoDTO;
 import br.com.techchallenge.energymonitor.dto.usuario.UsuarioEnderecoDTO;
@@ -86,5 +87,12 @@ public class UsuarioService {
     private Endereco findEnderecoById(Long enderecosIds) {
         return (Endereco) this.enderecoService.get(enderecosIds).toDomain();
     }
+    @Transactional
+    public void includeEletronico(Long id, EletronicoDto eletronicoDto) {
+        Usuario usuario = findById(id);
 
+        usuario.addEletronico(eletronicoDto.toDomain());
+
+        usuarioRepository.save(usuario);
+    }
 }

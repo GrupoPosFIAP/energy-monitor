@@ -1,5 +1,6 @@
 package br.com.techchallenge.energymonitor.dominio;
 
+import br.com.techchallenge.energymonitor.dominio.eletronico.Eletronico;
 import br.com.techchallenge.energymonitor.dominio.endereco.Endereco;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import br.com.techchallenge.energymonitor.dto.pessoa.PessoaDto;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,6 +40,9 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Pessoa> pessoas;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private List<Eletronico> eletronicos;
 
     public Usuario(UsuarioBasicoDTO usuarioBasicoDTO) {
         this.nomeCompleto = usuarioBasicoDTO.nomeCompleto();
@@ -147,4 +152,11 @@ public class Usuario {
         return this.pessoas.remove(pessoa);
     }
 
+    public void addEletronico(Eletronico eletronico) {
+        this.eletronicos.add(eletronico);
+    }
+
+    public List<Eletronico> getEletronicos() {
+        return eletronicos;
+    }
 }

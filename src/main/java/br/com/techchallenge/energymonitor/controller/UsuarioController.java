@@ -1,5 +1,6 @@
 package br.com.techchallenge.energymonitor.controller;
 
+import br.com.techchallenge.energymonitor.dto.EletronicoDto;
 import br.com.techchallenge.energymonitor.dto.EnderecoDto;
 import br.com.techchallenge.energymonitor.dto.usuario.UsuarioBasicoDTO;
 import br.com.techchallenge.energymonitor.dto.usuario.UsuarioDTO;
@@ -47,14 +48,18 @@ public class UsuarioController {
 
     // ENDERECOS
 
-    @PutMapping("/endereco/{id}")
+    @PutMapping("/{id}/endereco")
     public void updateEndereco(@PathVariable Long id, @RequestBody EnderecoDto enderecoDto) {
         this.usuarioService.updateEndereco(id, enderecoDto);
     }
 
-    @DeleteMapping("/endereco/{id}")
+    @DeleteMapping("/{id}/endereco")
     public void deleteEndereco(@PathVariable Long id, @RequestParam(name = "enderecoId") Long enderecoId) {
         this.usuarioService.deleteEndereco(id, enderecoId);
     }
 
+    @PostMapping("/{id}/eletronico")
+    public void createEletronico(@PathVariable Long id, @RequestBody EletronicoDto eletronicoDto) {
+        this.usuarioService.includeEletronico(id, eletronicoDto);
+    }
 }
