@@ -58,8 +58,17 @@ public class UsuarioController {
         this.usuarioService.deleteEndereco(id, enderecoId);
     }
 
-    @PostMapping("/{id}/eletronico")
+    // ELETRONICOS
+
+    @PutMapping("/{id}/eletronico")
     public void createEletronico(@PathVariable Long id, @RequestBody EletronicoDto eletronicoDto) {
         this.usuarioService.includeEletronico(id, eletronicoDto);
+    }
+
+    @GetMapping("{/id}/eletronico")
+    public void listarEletronicos(@PathVariable Long id,
+                                                        @RequestParam(defaultValue = "0") Integer page,
+                                                        @RequestParam(defaultValue = "25") Integer pageSize) {
+        this.usuarioService.listarEletronicos(id, PageRequest.of(page, pageSize));
     }
 }

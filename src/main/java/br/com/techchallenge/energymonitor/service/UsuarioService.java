@@ -87,6 +87,7 @@ public class UsuarioService {
     private Endereco findEnderecoById(Long enderecosIds) {
         return (Endereco) this.enderecoService.get(enderecosIds).toDomain();
     }
+
     @Transactional
     public void includeEletronico(Long id, EletronicoDto eletronicoDto) {
         Usuario usuario = findById(id);
@@ -94,5 +95,10 @@ public class UsuarioService {
         usuario.addEletronico(eletronicoDto.toDomain());
 
         usuarioRepository.save(usuario);
+    }
+
+    public void listarEletronicos(Long id, PageRequest pageRequest) {
+        findById(id);
+
     }
 }

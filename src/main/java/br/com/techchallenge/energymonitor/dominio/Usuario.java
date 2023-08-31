@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -41,8 +40,8 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Pessoa> pessoas;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-    private List<Eletronico> eletronicos;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Eletronico> eletronicos;
 
     public Usuario(UsuarioBasicoDTO usuarioBasicoDTO) {
         this.nomeCompleto = usuarioBasicoDTO.nomeCompleto();
@@ -156,7 +155,7 @@ public class Usuario {
         this.eletronicos.add(eletronico);
     }
 
-    public List<Eletronico> getEletronicos() {
+    public Set<Eletronico> getEletronicos() {
         return eletronicos;
     }
 }

@@ -1,9 +1,7 @@
 package br.com.techchallenge.energymonitor.dominio.eletronico;
 
 import br.com.techchallenge.energymonitor.dominio.Domain;
-import br.com.techchallenge.energymonitor.dominio.Usuario;
 import br.com.techchallenge.energymonitor.dominio.consumo.Consumo;
-import br.com.techchallenge.energymonitor.dominio.endereco.Endereco;
 import br.com.techchallenge.energymonitor.dto.EletronicoDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -34,14 +32,6 @@ public class Eletronico extends Domain {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_eletronico")
     private List<Consumo> consumos;
-
-
-    @JoinTable(
-            name = "eletronico_usuarios",
-            joinColumns = @JoinColumn(name = "eletronico_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuarios_id"))
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Usuario> usuarios;
 
     public Eletronico(EletronicoFilter eletronicoFilter) {
         this.nome = eletronicoFilter.nome();
