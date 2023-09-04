@@ -72,6 +72,53 @@ parentesco |O tipo de parentesco da pessoa. Pode ser "FILHO", "FILHA", "IRMAO", 
 }
 ```
 
+* Rota GET http://localhost:8080/pessoas/1
+
+Essa rota faz a consulta de pessoa pelo id:
+
+ * Exemplo de Resposta
+
+    Após enviar a requisição, você receberá a seguinte resposta:  
+```sh
+{
+  "nome": "João",
+  "dataNascimento": "01-01-1990",
+  "genero": "MASCULINO",
+  "parentesco": "OUTRO"
+}
+```
+
+* Rota PUT http://localhost:8080/pessoas/1
+
+Essa rota faz a atualização de pessoa pelo id:
+
+Você pode utilizar o seguinte JSON como exemplo para cadastrar um novo usuario:
+
+```sh
+{
+  "nome": "Joana",
+  "dataNascimento": "09-09-1999",
+  "genero": "FEMININO",
+  "parentesco": "OUTRO"
+}
+```
+
+ * Exemplo de Resposta
+
+    Após enviar a requisição, você receberá a seguinte resposta:  
+```sh
+{
+  "nome": "Joana",
+  "dataNascimento": "09-09-1999",
+  "genero": "FEMININO",
+  "parentesco": "OUTRO"
+}
+```
+
+* Rota DELETE http://localhost:8080/pessoas/1
+
+Essa rota faz a exclusão de pessoa pelo id:
+  
 ## Endereço
 
 * Rota POST http://localhost:8080/enderecos
@@ -112,6 +159,74 @@ estado |A sigla do estado ("AC", "AL","AP","AM","BA","CE","DF","ES","GO","MA","M
 }
 ```
 
+* Rota GET http://localhost:8080/enderecos/1
+
+  Essa rota fará a consulta do endereço pelo id:
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta."
+
+```sh
+{
+    "rua": "EQ 5/8 Bloco B Casa",
+    "número": 2,
+    "bairro": "Setor Oeste",
+    "cidade": "Gama",
+    "estado": "DF"
+}
+```
+
+* Rota GET http://localhost:8080/enderecos
+
+  Essa rota retorna a lista de endereços:
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta."
+
+```sh
+{
+    "rua": "EQ 5/8 Bloco B Casa",
+    "número": 2,
+    "bairro": "Setor Oeste",
+    "cidade": "Gama",
+    "estado": "DF"
+}
+```
+
+* Rota UPDATE http://localhost:8080/enderecos/1
+
+  Essa rota fará atualização do endereço informado via id.
+  Informar endereço atualizado no formato JSON conforme:
+
+```sh
+{
+    "rua": "SBS Quadra 2 Edifício G",
+    "número": 12,
+    "bairro": "Asa Sul",
+    "cidade": "Brasília",
+    "estado": "DF"
+}
+```
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta."
+
+```sh
+{
+    "rua": "SBS Quadra 2 Edifício G",
+    "número": 12,
+    "bairro": "Asa Sul",
+    "cidade": "Brasília",
+    "estado": "DF"
+}
+```
+
+* Rota DELETE http://localhost:8080/enderecos/2
+  Essa rota fára esclusão do endereço informado no id:
+
 ## Eletrônico
 
 * Rota POST : http://localhost:8080/eletronicos
@@ -145,6 +260,79 @@ potência |A potência do eletrônico em Watts
 }
 ```
 
+* Rota GET : http://localhost:8080/eletronicos
+  
+  Essa rota retorna listagem dos eletrônicos.
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta. 
+```sh
+{
+    "nome": "Televisão",
+    "modelo": 100,
+    "potencia": 5
+}
+```
+
+* Rota GET : http://localhost:8080/eletronicos/2
+  
+  Essa rota retorna o eletrônico informado pelo id.
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta. 
+```sh
+{
+    "nome": "Televisão",
+    "modelo": 100,
+    "potencia": 5
+}
+```
+
+* Rota GET : http://localhost:8080/eletronicos/filter?nome=Telev?modelo=100
+  
+  Essa rota retorna listagem dos eletrônicos de acordo com os filtros (semânticos) informados na URL.
+  Campos de filtro: nome e modelo
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta. 
+```sh
+{
+    "nome": "Televisão",
+    "modelo": 100,
+    "potencia": 5
+}
+```
+
+* Rota PUT : http://localhost:8080/eletronicos/2
+  Essa rota atualiza o eletrônico informado no id.
+  Informar nos dados da no JSON como exemplo para atualizar um eletrônico.
+
+```sh
+{
+    "nome": "Televisão",
+    "modelo": "SmarTV",
+    "potencia": 5
+}
+```
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta. 
+```sh
+{
+    "nome": "Televisão",
+    "modelo": "SmarTV",
+    "potencia": 7
+}
+```
+
+* Rota DELETE : http://localhost:8080/eletronicos/2
+  
+  Essa rota exclui o eletrônico informado pelo id.
+
 ## Consumo
 
 * Rota POST : http://localhost:8080/consumo
@@ -153,7 +341,7 @@ potência |A potência do eletrônico em Watts
 
 ```sh
 {
-    "inicioFuncionamento": "2023"
+    "inicioFuncionamento": "2023-09-04T13:30:56:0000"
 }
 ```
 
@@ -161,33 +349,62 @@ potência |A potência do eletrônico em Watts
 
 Campo   | Descrição
 --------- | ------
-nome | O nome do eletrônico
-modelo  |descrição do fabricante, marca, número série.
-potência |A potência do eletrônico em Watts
+inicioFuncionamento | Informa o instante do início de funcionamento do aparelho eletrônico.
+fimFuncionamento  | Informa o instante do fim de funcionamento do aparelho eletrônico.
+consumo | Esse campo é calculado de acordo como iníciofuncionamento, fimFuncionamento e potência do aparelho.
 
 * Exemplo de Resposta
 
   Após enviar a requisição, você receberá a seguinte resposta. 
 ```sh
 {
-    "nome": "Televisão",
-    "modelo": 100,
-    "potencia": 5
+    "inicioFuncionamento": "2023-09-04T13:30:56:0000"
+}
+```
+
+* Rota GET : http://localhost:8080/consumo/3
+  Retorna o consumo do aparelho informado via id.
+  
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta. 
+```sh
+{
+    "inicioFuncionamento": "2023-09-04T13:30:56:0000",
+     "fimFuncionamento": "2023-09-04T13:45:56:0000",
+     "consumo": 75
+}
+```
+
+* Rota GET : http://localhost:8080/consumo
+  Retorna listagem dos aparelhos e seu consumo.
+  
+* Rota UPDATE : http://localhost:8080/consumo/3
+  Atualiza o consumo do endereço informado no id.
+  
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta. 
+```sh
+{
+    "inicioFuncionamento": "2023-09-04T13:30:56:0000",
+     "fimFuncionamento": "2023-09-04T13:45:56:0000",
+     "consumo": 75
 }
 ```
 
 ## Usuário
 
-* Rota POST : http://localhost:8080/usuarios
+* Rota POST : http://localhost:8080/usuario
   
   Você pode utilizar o seguinte JSON como exemplo para cadastrar um novo usuário.
 
 ```sh
 {
-    "nomeCompleto": "Televisão",
-    "username": 100,
-    "cpf": 5,
-    "email": ""
+    "nomeCompleto": "Fulano de Tal",
+    "username": "fulano",
+    "cpf": 52365895494,
+    "email": "usuario@provedor.com"
 }
 ```
 
@@ -195,20 +412,58 @@ potência |A potência do eletrônico em Watts
 
 Campo   | Descrição
 --------- | ------
-nome | O nome do eletrônico
-modelo  |descrição do fabricante, marca, número série.
-potência |A potência do eletrônico em Watts
+nomeCompleto | Nome completo do usuário
+username | Nome que identifica unicamente o usuário
+cpf | Número do CPF do usuário
+email | E-mail do usuário
 
 * Exemplo de Resposta
 
   Após enviar a requisição, você receberá a seguinte resposta. 
 ```sh
 {
-    "nome": "Televisão",
-    "modelo": 100,
-    "potencia": 5
+    "nomeCompleto": "Fulano de Tal",
+    "username": "fulano",
+    "cpf": 52365895494,
+    "email": "usuario@provedor.com"
 }
 ```
+
+* Rota GET : http://localhost:8080/usuario/5
+  Retorna usuário informado no id.
+
+* Rota GET : http://localhost:8080/usuario  
+  Retorna listagem dos usuários.
+
+* Rota PUT : http://localhost:8080/usuario/5
+  
+  Atualiza dados do usuário informado via id.
+  Os novos dados devem ser infomado via arquivo JSON.
+
+```sh
+{
+    "nomeCompleto": "Beltrano de Tal",
+    "username": "beltrano",
+    "cpf": 56546565645,
+    "email": "usuario@provedor.com"
+}
+```
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta. 
+```sh
+{
+    "nomeCompleto": "Beltrano de Tal",
+    "username": "beltrano",
+    "cpf": 56546565645,
+    "email": "usuario@provedor.com"
+}
+```
+
+* Rota DELETE : http://localhost:8080/usuario/5
+  Exclui usuário informado no id.
+
 
 ## Dificuldades e Aprendizados
 ```
