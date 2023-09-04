@@ -6,17 +6,21 @@
 -API Energy Monitor permite o gerenciamento da energia consumida por aparelhos eletrônicos diversos, 
 monitorando em tempo real e gerando historico de consumo de energia elétrica.
 
--Disponibilizamos três endpoints: Enderecos, Pessoas e Eletronicos, nos quais aplicamos a mesma 
-abstração, onde os dados serão recebidos e a seguir validados. Com essa premissa criamos uma 
-interface Dto para ser implementada nas trê requisições; Essa interface possui um método toDomain()
-para obter a classe de domínio referente a cada requisição, onde poderemos aplicar as regras de 
-negócios específicas para cada fluxo. Com isso, foi necessário apenas um Service para implementar
-todas as requisições.
+-Disponibilizamos cinco endpoints: Enderecos, Pessoas, Eletronicos, Consumo e Usuários nos quais
+aplicamos a mesma abstração, onde os dados serão recebidos e a seguir validados. Com essa premissa
+criamos uma interface Dto para ser implementada nas cinco requisições; Essa interface possui um
+método toDomain() para obter a classe de domínio referente a cada requisição, onde poderemos
+aplicar as regras de negócios específicas para cada fluxo. 
 ```
 ## Tecnologias adotadas
 ```
 -Java 17: programação server-side
 -SpringBoot: criação API Restfull e microsserviços
+-Docker: Gerar container do SGBD PostgresSQL
+-PostgresSQL: Instanciado via Docker
+-DBeaver: Front-End para o SGBD
+-PostMan: Utilizado nos testes dos endpoints
+-Swagger: Modelagen, documentação e teste dos endpoints
 ```
 ## Arquitetura
 <img  width="100%" height="100%"  src="src/arquitetura.jpg"  alt="Arquitetura"  title="Arquitetura"  />
@@ -25,6 +29,8 @@ todas as requisições.
 * [Pessoa](#pessoa)
 * [Endereço](#Endereço)
 * [Aparelho Eletrônico](#Eletrônico)
+* [Consumo](#Consumo)
+* [Usuário](#Usuário)
 
 
 ## Pessoa
@@ -137,7 +143,76 @@ potência |A potência do eletrônico em Watts
 }
 ```
 
+## Consumo
+
+* Rota POST : http://localhost:8080/consumo
+  
+  Você pode utilizar o seguinte JSON como exemplo para cadastrar um novo consumo.
+
+```sh
+{
+    "inicioFuncionamento": "2023"
+}
+```
+
+* Descrição dos Campos
+
+Campo   | Descrição
+--------- | ------
+nome | O nome do eletrônico
+modelo  |descrição do fabricante, marca, número série.
+potência |A potência do eletrônico em Watts
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta. 
+```sh
+{
+    "nome": "Televisão",
+    "modelo": 100,
+    "potencia": 5
+}
+```
+
+## Usuário
+
+* Rota POST : http://localhost:8080/usuarios
+  
+  Você pode utilizar o seguinte JSON como exemplo para cadastrar um novo usuário.
+
+```sh
+{
+    "nomeCompleto": "Televisão",
+    "username": 100,
+    "cpf": 5,
+    "email": ""
+}
+```
+* Descrição dos Campos
+
+Campo   | Descrição
+--------- | ------
+nome | O nome do eletrônico
+modelo  |descrição do fabricante, marca, número série.
+potência |A potência do eletrônico em Watts
+
+* Exemplo de Resposta
+
+  Após enviar a requisição, você receberá a seguinte resposta. 
+```sh
+{
+    "nome": "Televisão",
+    "modelo": 100,
+    "potencia": 5
+}
+```
+
+
 ## Dificuldades e Aprendizados
 * A não padronização dos ambientes da equipe gerou falhas no build do projeto.
 * A utilização de IDE (Integrated Developer Envoirement – Ambiente de Desenvolvimento Integrado)
-idênticas por parte dos menbros da equipe, evita problemas de incompatibilidade.
+idênticas por parte dos membros da equipe, evita problemas de incompatibilidade.
+* O grupo não alinhou a finalização dos módulos da pós-graduação para liberar tempo adequado
+para o desenvolvimento do projeto
+* Horários de reunião do grupo divergiu entre os participantes.
+* Dificuldade no entendimento do enunciado do projeto. Exemplo: O relacionamento de algumas entidades.
