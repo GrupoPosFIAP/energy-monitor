@@ -462,6 +462,7 @@ email | E-mail do usuário
 ```
 
 * Rota DELETE : http://localhost:8080/usuario/5
+
   Exclui usuário informado no id.
 
 
