@@ -11,6 +11,7 @@ onde os dados serão recebidos e a seguir validados. Com essa premissa criamos u
 cinco requisições; Essa interface possui um método toDomain() para obter a classe de domínio referente a cada requisição,
 onde poderemos aplicar as regras de negócios específicas para cada fluxo. 
 ```
+
 ## Tecnologias adotadas
 ```
 -Java 17: programação server-side
@@ -21,6 +22,7 @@ onde poderemos aplicar as regras de negócios específicas para cada fluxo.
 -PostMan: Utilizado nos testes dos endpoints
 -Swagger: Modelagen, documentação e teste dos endpoints
 ```
+
 ## Arquitetura
 <img  width="100%" height="100%"  src="src/arquitetura.jpg"  alt="Arquitetura"  title="Arquitetura"  />
 
@@ -30,7 +32,6 @@ onde poderemos aplicar as regras de negócios específicas para cada fluxo.
 * [Aparelho Eletrônico](#Eletrônico)
 * [Consumo](#consumo)
 * [Usuário](#usuário)
-
 
 ## Pessoa
 
@@ -46,7 +47,6 @@ Você pode utilizar o seguinte JSON como exemplo para cadastrar um novo usuario:
   "parentesco": "OUTRO"
 }
 ```
-
 
 * Descrição dos Campos
 
@@ -70,6 +70,7 @@ parentesco |O tipo de parentesco da pessoa. Pode ser "FILHO", "FILHA", "IRMAO", 
   "parentesco": "OUTRO"
 }
 ```
+
 ## Endereço
 
 * Rota POST http://localhost:8080/enderecos
@@ -123,6 +124,7 @@ estado |A sigla do estado ("AC", "AL","AP","AM","BA","CE","DF","ES","GO","MA","M
     "potencia": 5
 }
 ```
+
 * Descrição dos Campos
 
 Campo   | Descrição
@@ -187,6 +189,7 @@ potência |A potência do eletrônico em Watts
     "email": ""
 }
 ```
+
 * Descrição dos Campos
 
 Campo   | Descrição
@@ -205,7 +208,6 @@ potência |A potência do eletrônico em Watts
     "potencia": 5
 }
 ```
-
 
 ## Dificuldades e Aprendizados
 ```
