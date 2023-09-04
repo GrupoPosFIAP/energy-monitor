@@ -363,6 +363,7 @@ consumo | Esse campo é calculado de acordo como iníciofuncionamento, fimFuncio
 ```
 
 * Rota GET : http://localhost:8080/consumo/3
+  
   Retorna o consumo do aparelho informado via id.
   
 * Exemplo de Resposta
@@ -377,9 +378,11 @@ consumo | Esse campo é calculado de acordo como iníciofuncionamento, fimFuncio
 ```
 
 * Rota GET : http://localhost:8080/consumo
+
   Retorna listagem dos aparelhos e seu consumo.
   
 * Rota UPDATE : http://localhost:8080/consumo/3
+
   Atualiza o consumo do endereço informado no id.
   
 * Exemplo de Resposta
@@ -425,14 +428,26 @@ email | E-mail do usuário
     "nomeCompleto": "Fulano de Tal",
     "username": "fulano",
     "cpf": 52365895494,
-    "email": "usuario@provedor.com"
+    "email": "fulano@provedor.com"
 }
 ```
 
 * Rota GET : http://localhost:8080/usuario/5
+
   Retorna usuário informado no id.
 
+```sh
+{
+    "nomeCompleto": "Fulano de Tal",
+    "username": "fulano",
+    "cpf": 52365895494,
+    "email": "usuario@provedor.com"
+}
+```
+
+
 * Rota GET : http://localhost:8080/usuario  
+
   Retorna listagem dos usuários.
 
 * Rota PUT : http://localhost:8080/usuario/5
@@ -457,7 +472,7 @@ email | E-mail do usuário
     "nomeCompleto": "Beltrano de Tal",
     "username": "beltrano",
     "cpf": 56546565645,
-    "email": "usuario@provedor.com"
+    "email": "beltrano@provedor.com"
 }
 ```
 
