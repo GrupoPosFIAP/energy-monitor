@@ -3,13 +3,14 @@
 
 ## Sobre
 ```
--API Energy Monitor permite o gerenciamento da energia consumida por aparelhos eletrônicos diversos, monitorando em tempo 
-real e gerando historico de consumo de energia elétrica.
+-API Energy Monitor permite o gerenciamento da energia consumida por aparelhos eletrônicos diversos,
+monitorando em tempo real e gerando historico de consumo de energia elétrica.
 
--Disponibilizamos cinco endpoints: Enderecos, Pessoas, Eletronicos, Consumo e Usuários nos quais aplicamos a mesma abstração,
-onde os dados serão recebidos e a seguir validados. Com essa premissa criamos uma interface Dto para ser implementada nas
-cinco requisições; Essa interface possui um método toDomain() para obter a classe de domínio referente a cada requisição,
-onde poderemos aplicar as regras de negócios específicas para cada fluxo. 
+-Disponibilizamos cinco endpoints: Enderecos, Pessoas, Eletronicos, Consumo e Usuários nos quais
+aplicamos a mesma abstração, onde os dados serão recebidos e a seguir validados. Com essa premissa
+criamos uma interface Dto para ser implementada nas cinco requisições; Essa interface possui um método
+toDomain() para obter a classe de domínio referente a cada requisição, onde poderemos aplicar as
+regras de negócios específicas para cada fluxo. 
 ```
 
 ## Tecnologias adotadas
@@ -212,10 +213,11 @@ potência |A potência do eletrônico em Watts
 ## Dificuldades e Aprendizados
 ```
 * A não padronização dos ambientes da equipe gerou falhas no build do projeto.
-* O grupo não alinhou a finalização dos módulos da pós-graduação para liberar tempo adequado para o desenvolvimento do projeto.
+* O grupo não alinhou a finalização dos módulos da pós-graduação para liberar tempo adequado para o
+desenvolvimento do projeto.
 * Horários de reunião do grupo divergiu entre alguns participantes.
 * Dificuldade no entendimento do enunciado do projeto. Exemplo: O relacionamento de algumas entidades.
 
-* A utilização de IDE (Integrated Developer Envoirement – Ambiente de Desenvolvimento Integrado) idênticas por parte dos membros
-da equipe, evita problemas de incompatibilidade.
+* A utilização de IDE (Integrated Developer Envoirement – Ambiente de Desenvolvimento Integrado) idênticas
+por parte dos membros da equipe, evita problemas de incompatibilidade.
 ```
