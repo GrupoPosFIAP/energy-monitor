@@ -6,11 +6,11 @@
 -API Energy Monitor permite o gerenciamento da energia consumida por aparelhos eletrônicos diversos,
 monitorando em tempo real e gerando historico de consumo de energia elétrica.
 
--Disponibilizamos cinco endpoints: Enderecos, Pessoas, Eletronicos, Consumo e Usuários nos quais
-aplicamos a mesma abstração, onde os dados serão recebidos e a seguir validados. Com essa premissa
-criamos uma interface Dto para ser implementada nas cinco requisições; Essa interface possui um método
-toDomain() para obter a classe de domínio referente a cada requisição, onde poderemos aplicar as
-regras de negócios específicas para cada fluxo. 
+-Disponibilizamos endpoints para cinco categorias: Enderecos, Pessoas, Eletronicos, Consumo e Usuários
+nos quais aplicamos a mesma abstração, onde os dados serão recebidos e a seguir validados. Com essa
+premissa criamos uma interface Dto para ser implementada nas cinco requisições; Essa interface possui
+um método toDomain() para obter a classe de domínio referente a cada requisição, onde poderemos aplicar
+as regras de negócios específicas para cada fluxo. 
 ```
 
 ## Tecnologias adotadas
@@ -18,10 +18,20 @@ regras de negócios específicas para cada fluxo.
 -Java 17: programação server-side
 -SpringBoot: criação API Restfull e microsserviços
 -Docker: Gerar container do SGBD PostgresSQL
--PostgresSQL: Instanciado via Docker
+-PostgresSQL: Instanciado o SGBD via Docker
 -DBeaver: Front-End para o SGBD
 -PostMan: Utilizado nos testes dos endpoints
--Swagger: Modelagen, documentação e teste dos endpoints
+-Swagger: Modelagem, documentação e teste dos endpoints
+```
+
+## Como executar a aplicação
+```
+- Clonar o repositório https://github.com/GrupoPosFIAP/energy-monitor
+- Iniciar o SGBD PostgresSQL e criar database energy-monitor
+  Obs: Atualizar no application.properties usuário e senha 
+- Entrar na pasta raiz do projeto e executar o comando "mvn spring-boot:run"
+- Testar via Postman/Swagger
+  http://localhost:8080/swagger-ui/index.html#/
 ```
 
 ## Arquitetura
